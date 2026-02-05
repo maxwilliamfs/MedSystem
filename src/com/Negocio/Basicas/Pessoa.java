@@ -2,8 +2,9 @@ package com.Negocio.Basicas;
 
 import com.Negocio.Basicas.Secundarias.Data;
 import com.Negocio.Basicas.Secundarias.Endereco;
+import java.io.Serializable;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable {
     //Atributos
     protected String nome,cPF,tipoSanguineo;
     protected Endereco endereco;

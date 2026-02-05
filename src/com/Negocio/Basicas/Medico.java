@@ -1,12 +1,23 @@
 package com.Negocio.Basicas;
 
-public class Medico extends Funcionario{
-    private int crm;
+//Bibliotecas
+import com.Negocio.Basicas.Enuns.Especialidade;
 
-    public int getCrm() {
+public class Medico extends Funcionario {
+    private String crm;
+    private Especialidade especialidade;
+
+    //Getters e Setters
+    public String getCrm() {
         return crm;
     }
-    public void setCrm(int crm) {
+    public void setCrm(String crm) {
         this.crm = crm;
+    }
+    public Especialidade getEspecialidade() {
+        return especialidade;
+    }
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
     }
 }
