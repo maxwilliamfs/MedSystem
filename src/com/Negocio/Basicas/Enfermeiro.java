@@ -1,6 +1,6 @@
 package com.Negocio.Basicas;
 
-public class Enfermeiro extends Pessoa {
+public class Enfermeiro extends Funcionario {
     private String corem;
 
     //Getters e Setters

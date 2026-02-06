@@ -1,5 +1,5 @@
 package com.Negocio.Basicas;
 
-public class Administrador extends Pessoa {
+public class Administrador extends Funcionario {
     
 }
