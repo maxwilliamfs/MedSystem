@@ -4,11 +4,17 @@ package com.Negocio.Basicas;
 import java.util.ArrayList;
 
 public class Paciente extends Pessoa {
-    private String nomePlanoDeSaude;
+    private String nomePlanoDeSaude, tipoSanguineo;
     private double porcentagemDescontoPlano;
     private ArrayList<ConsultaAbstrata> prontuario;
 
     //Getters e Setters
+    public String getTipoSanguineo() {
+        return tipoSanguineo;
+    }
+    public void setTipoSanguineo(String tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
+    }
     public String getNomePlanoDeSaude() {
         return nomePlanoDeSaude;
     }

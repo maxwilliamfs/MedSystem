@@ -4,9 +4,9 @@ import com.Negocio.Basicas.Secundarias.Data;
 import com.Negocio.Basicas.Secundarias.Endereco;
 import java.io.Serializable;
 
-public abstract class Pessoa implements Serializable {
+public class Pessoa implements Serializable {
     //Atributos
-    protected String nome,cPF,tipoSanguineo;
+    protected String nome,cPF;
     protected Endereco endereco;
     protected Data dataNascimento;
 
@@ -22,12 +22,6 @@ public abstract class Pessoa implements Serializable {
     }
     public void setcPF(String cPF) {
         this.cPF = cPF;
-    }
-    public String getTipoSanguineo() {
-        return tipoSanguineo;
-    }
-    public void setTipoSanguineo(String tipoSanguineo) {
-        this.tipoSanguineo = tipoSanguineo;
     }
     public Endereco getEndereco() {
         return endereco;

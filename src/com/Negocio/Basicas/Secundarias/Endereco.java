@@ -2,13 +2,13 @@ package com.Negocio.Basicas.Secundarias;
 
 public class Endereco {
     //Atributos
-    private String rua,municipio,estado,cep,numero;
+    private String logradouro,municipio,estado,cep,numero;
 
-    public String getRua() {
-        return rua;
+    public String getLogradouro() {
+        return logradouro;
     }
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
     public String getMunicipio() {
         return municipio;

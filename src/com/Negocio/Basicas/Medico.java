@@ -7,6 +7,14 @@ public class Medico extends Funcionario {
     private String crm;
     private Especialidade especialidade;
 
+    //Contrutor
+    public Medico(Pessoa p){
+        this.setNome(p.getNome());
+        this.setEndereco(p.getEndereco());
+        this.setDataNascimento(p.getDataNascimento());
+        this.setcPF(p.getcPF());
+    }
+
     //Getters e Setters
     public String getCrm() {
         return crm;
