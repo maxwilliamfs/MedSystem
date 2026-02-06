@@ -5,6 +5,7 @@ import com.Dados.Interfaces.IRepositorioFuncionario;
 import com.Negocio.Basicas.Funcionario;
 import com.Negocio.Excessoes.BugFoundedException;
 import com.Negocio.Excessoes.ErroNoDiscoException;
+import com.Negocio.Excessoes.InformacaoNaoEncontradaException;
 import com.Negocio.Excessoes.MedSystemException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,16 +13,55 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class ArquivoFuncionario implements IRepositorioFuncionario{
+    //Atributos
     private String nomeArquivo = "Funcionarios.bin";
 
+    //Metodos Publicos
     public void adicionar(Funcionario funcionario) throws MedSystemException{
         ArrayList<Funcionario> funcionarios = ler();
     }
+    public void excluir(String CPF) throws MedSystemException {
+        ArrayList<Funcionario> funcionarios = ler();
+        int ID = buscarCPF(CPF,funcionarios);
+        funcionarios.remove(ID);
+        salvar(funcionarios);
+    }
+    public ArrayList<Funcionario> listar() throws MedSystemException {
+        return ler();
+    }
+    public void modificar(String CPF, Funcionario funcionario) throws MedSystemException {
+        ArrayList<Funcionario> funcionarios = ler();
+        int ID = buscarCPF(CPF,funcionarios);
+        funcionarios.set(ID, funcionario);
+        salvar(funcionarios);
+    }
+    public Funcionario buscar(String CPF) throws MedSystemException{
+        ArrayList<Funcionario> funcionarios = ler();
+        int ID = buscarCPF(CPF,funcionarios);
+        return funcionarios.get(ID);
+    }
+    public Funcionario logar(String login, String senha) throws MedSystemException{
+        ArrayList<Funcionario> funcionarios = ler();
+        for(int i = 0; i < funcionarios.size(); i++){
+            if(funcionarios.get(i).getLogin().equals(login) || funcionarios.get(i).getSenha().equals(senha)){
+                return funcionarios.get(i);
+            }
+        }
+        throw new InformacaoNaoEncontradaException("Login ou Senha Invalidos!!!");
+    }
 
+    //Metodos Privados
+    private int buscarCPF(String CPF, ArrayList<Funcionario> funcionarios) throws MedSystemException {
+        for(int i = 0; i < funcionarios.size();i++){
+            if(funcionarios.get(i).getcPF().equals(CPF)){
+                return i;
+            }
+        }
+        throw new InformacaoNaoEncontradaException("Nao existe Funcionario cadastrado com tal CPF!!!");
+    }
     private ArrayList<Funcionario> ler() throws MedSystemException{
         
         ArrayList<Funcionario> funcionarios;
