@@ -1,4 +1,4 @@
-package com.Negocio;
+package com.Negocio.Controladores;
 
 import java.util.ArrayList;
 

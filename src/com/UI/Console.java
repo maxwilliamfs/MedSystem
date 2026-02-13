@@ -15,7 +15,6 @@ public class Console {
             menuPrincipal();
         }
     }
-
     private static void menuPrincipal(){
         String login,senha;
         Leitor.clear();
@@ -33,23 +32,23 @@ public class Console {
             System.out.println("\nLogado com Sucesso!!!");
             System.out.println("Bem vindo(a), " + loged.getNome() + "!!!\n");
             if(loged instanceof Medico){
-                menuMedico();
+                menuInicialMedico();
             } else if(loged instanceof Recepcionista){
-                menuRecepcionista();
+                menuInicialRecepcionista();
             } else if(loged instanceof Administrador){
-                menuAdministrador();
+                menuInicialAdministrador();
             } else if(loged instanceof Enfermeiro){
-                menuEnfermeiro();
+                menuInicialEnfermeiro();
             }
         } catch (MedSystemException Ex){
             System.err.println(Ex.getMessage());
         }
         
     }   
-    private static void menuMedico(){
+    private static void menuInicialMedico(){
 
     }
-    private static void menuAdministrador(){
+    private static void menuInicialAdministrador(){
         Leitor.linhas();
         System.out.println("1 - Cadastrar funcionario");
         System.out.println("2 - Listar funcionarios");
@@ -78,10 +77,10 @@ public class Console {
         }
 
     }
-    private static void menuEnfermeiro(){
+    private static void menuInicialEnfermeiro(){
         
     }
-    private static void menuRecepcionista(){
+    private static void menuInicialRecepcionista(){
         
     }
     

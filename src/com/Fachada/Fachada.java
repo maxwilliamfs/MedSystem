@@ -2,8 +2,8 @@ package com.Fachada;
 
 import java.util.ArrayList;
 
-import com.Negocio.ControladorFuncionario;
 import com.Negocio.Basicas.Funcionario;
+import com.Negocio.Controladores.ControladorFuncionario;
 import com.Negocio.Excessoes.MedSystemException;
 
 public class Fachada {
