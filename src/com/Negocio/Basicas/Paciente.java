@@ -4,8 +4,8 @@ package com.Negocio.Basicas;
 import java.util.ArrayList;
 
 public class Paciente extends Pessoa {
-    private String nomePlanoDeSaude, tipoSanguineo;
-    private double porcentagemDescontoPlano;
+    private String nomeConvenio, tipoSanguineo;
+    private double porcentagemDescontoConvenio;
     private ArrayList<ConsultaAbstrata> prontuario;
 
     //Getters e Setters
@@ -15,17 +15,17 @@ public class Paciente extends Pessoa {
     public void setTipoSanguineo(String tipoSanguineo) {
         this.tipoSanguineo = tipoSanguineo;
     }
-    public String getNomePlanoDeSaude() {
-        return nomePlanoDeSaude;
+    public String getnomeConvenio() {
+        return nomeConvenio;
     }
-    public void setNomePlanoDeSaude(String nomePlanoDeSaude) {
-        this.nomePlanoDeSaude = nomePlanoDeSaude;
+    public void setnomeConvenio(String nomeConvenio) {
+        this.nomeConvenio = nomeConvenio;
     }
-    public double getPorcentagemDescontoPlano() {
-        return porcentagemDescontoPlano;
+    public double getPorcentagemDescontoConvenio() {
+        return porcentagemDescontoConvenio;
     }
-    public void setPorcentagemDescontoPlano(double porcentagemDescontoPlano) {
-        this.porcentagemDescontoPlano = porcentagemDescontoPlano;
+    public void setPorcentagemDescontoConvenio(double porcentagemDescontoConvenio) {
+        this.porcentagemDescontoConvenio = porcentagemDescontoConvenio;
     }
     public ArrayList<ConsultaAbstrata> getProntuario() {
         return prontuario;

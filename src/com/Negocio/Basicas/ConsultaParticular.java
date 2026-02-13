@@ -11,7 +11,7 @@ public class ConsultaParticular extends ConsultaAbstrata {
     }
     @Override
     public double precoFinal(){
-        double porcentagemDesconto = paciente.getPorcentagemDescontoPlano()/100;
+        double porcentagemDesconto = paciente.getPorcentagemDescontoConvenio()/100;
         double precoBruto = calcularPrecoBruto();
         if(porcentagemDesconto != 0){
             return (1 - porcentagemDesconto) * precoBruto;
