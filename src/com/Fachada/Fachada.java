@@ -21,22 +21,22 @@ public class Fachada {
     }
 
     //Metodos Funcionario
-    public void adicionar(Funcionario funcionario) throws MedSystemException{
+    public void adicionarFuncionario(Funcionario funcionario) throws MedSystemException{
         controladorFuncionario.adicionar(funcionario);
     }
-    public void excluir(String CPF) throws MedSystemException{
+    public void excluirFuncionario(String CPF) throws MedSystemException{
         controladorFuncionario.excluir(CPF);
     }
     public Funcionario logar(String login, String senha) throws MedSystemException{
         return controladorFuncionario.logar(login, senha);
     }
-    public void modificar(String CPF, Funcionario funcionario) throws MedSystemException{
+    public void modificarFuncionario(String CPF, Funcionario funcionario) throws MedSystemException{
         controladorFuncionario.modificar(CPF, funcionario);
     }
-    public ArrayList<Funcionario> listar() throws MedSystemException{
+    public ArrayList<Funcionario> listarFuncionario() throws MedSystemException{
         return controladorFuncionario.listar();
     }
-    public Funcionario buscar(String CPF) throws MedSystemException{
+    public Funcionario buscarFuncionario(String CPF) throws MedSystemException{
         return controladorFuncionario.buscar(CPF);
     }
 }

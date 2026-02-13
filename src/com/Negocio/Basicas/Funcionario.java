@@ -1,7 +1,7 @@
 package com.Negocio.Basicas;
 
 public abstract class Funcionario extends Pessoa {
-    protected String login,senha;
+    private String login,senha;
 
     //Getters e Setters
     public String getLogin() {

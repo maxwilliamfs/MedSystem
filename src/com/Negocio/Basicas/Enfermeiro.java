@@ -4,11 +4,12 @@ public class Enfermeiro extends Funcionario {
     private String corem;
 
     //Construtor
-    public Enfermeiro(Pessoa p){
+    public Enfermeiro(Pessoa p, String corem){
         this.setNome(p.getNome());
         this.setEndereco(p.getEndereco());
         this.setDataNascimento(p.getDataNascimento());
         this.setcPF(p.getcPF());
+        this.setCorem(corem);
     }
 
     //Getters e Setters

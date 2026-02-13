@@ -8,4 +8,5 @@ public class Administrador extends Funcionario {
         this.setDataNascimento(p.getDataNascimento());
         this.setcPF(p.getcPF());
     }
+    public Administrador(){}
 }

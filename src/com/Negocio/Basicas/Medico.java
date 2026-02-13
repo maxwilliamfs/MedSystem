@@ -8,11 +8,18 @@ public class Medico extends Funcionario {
     private Especialidade especialidade;
 
     //Contrutor
-    public Medico(Pessoa p){
+    public Medico(Pessoa p, String crm, Especialidade especialidade){
         this.setNome(p.getNome());
         this.setEndereco(p.getEndereco());
         this.setDataNascimento(p.getDataNascimento());
         this.setcPF(p.getcPF());
+        this.setCrm(crm);
+        this.setEspecialidade(especialidade);
+    }
+
+    //ToString
+    public String toString(){
+        return;
     }
 
     //Getters e Setters

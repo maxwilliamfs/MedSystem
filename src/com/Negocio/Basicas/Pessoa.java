@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 public class Pessoa implements Serializable {
     //Atributos
-    protected String nome,cPF;
-    protected Endereco endereco;
-    protected Data dataNascimento;
+    private String nome,cPF;
+    private Endereco endereco;
+    private Data dataNascimento;
 
     //Getters e Setters
     public String getNome() {
