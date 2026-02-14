@@ -5,18 +5,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import com.Negocio.Basicas.Secundarias.Data;
 import com.Negocio.Basicas.Secundarias.Horario;
+import com.Negocio.Basicas.Secundarias.PrescricaoMedica;
 import com.Negocio.Basicas.Secundarias.Procedimento;
+import com.Negocio.Basicas.Enuns.GravidadeConsulta;
 import com.Negocio.Basicas.Enuns.StatusConsulta;
 
 public abstract class ConsultaAbstrata implements Serializable {
-    protected Medico medico;
-    protected Paciente paciente;
-    protected Data data;
-    protected Horario horarioInicio;
-    protected Horario horarioFim;
-    protected StatusConsulta status;
-    protected ArrayList<Procedimento> procedimentos = new ArrayList<>();
-
+    private Medico medico;
+    private Paciente paciente;
+    private Data data;
+    private Horario horarioInicio;
+    private Horario horarioFim;
+    private String sintomasInciais;
+    private GravidadeConsulta gravidade;
+    private StatusConsulta status;
+    private PrescricaoMedica prescricaoMedica;
+    private int id;
+    private ArrayList<Procedimento> procedimentos = new ArrayList<>();
 
     //Metodos Abstratos
     protected abstract double precoFinal();
@@ -63,5 +68,29 @@ public abstract class ConsultaAbstrata implements Serializable {
     }
     public void setProcedimentos(ArrayList<Procedimento> procedimentos) {
         this.procedimentos = procedimentos;
+    }
+    public GravidadeConsulta getGravidade() {
+        return gravidade;
+    }
+    public void setGravidade(GravidadeConsulta gravidade) {
+        this.gravidade = gravidade;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    } 
+    public PrescricaoMedica getPrescricaoMedica() {
+        return prescricaoMedica;
+    }
+    public void setPrescricaoMedica(PrescricaoMedica prescricaoMedica) {
+        this.prescricaoMedica = prescricaoMedica;
+    }
+    public String getSintomasInciais() {
+        return sintomasInciais;
+    }
+    public void setSintomasInciais(String sintomasInciais) {
+        this.sintomasInciais = sintomasInciais;
     }
 }

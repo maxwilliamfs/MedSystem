@@ -10,6 +10,11 @@ public class Pessoa implements Serializable {
     private Endereco endereco;
     private Data dataNascimento;
 
+    //toString
+    public String toString(){
+        return "Nome: " + this.getNome() + ",\nCPF: " + this.getcPF() + ",\n" + this.getEndereco().toString() + ",\nData de Nascimento: " + this.getDataNascimento().toString();
+    }
+
     //Getters e Setters
     public String getNome() {
         return nome;

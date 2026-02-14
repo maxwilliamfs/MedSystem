@@ -19,9 +19,9 @@ public class Medico extends Funcionario {
 
     //ToString
     public String toString(){
-        return;
+        return super.toString() + ",\nCRM: " + this.getCrm() + ",\nEspecialidade: " + this.getEspecialidade() + ".\n";
     }
-
+    
     //Getters e Setters
     public String getCrm() {
         return crm;

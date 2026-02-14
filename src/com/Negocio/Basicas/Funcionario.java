@@ -3,6 +3,11 @@ package com.Negocio.Basicas;
 public abstract class Funcionario extends Pessoa {
     private String login,senha;
 
+    //toString
+    public String toString(){
+        return super.toString();
+    }
+
     //Getters e Setters
     public String getLogin() {
         return login;

@@ -11,7 +11,7 @@ import com.Negocio.Basicas.Enuns.Especialidade;
 import com.Negocio.Excessoes.MedSystemException;
 
 public class MenuAdministrativo {
-    public static void adicionar(){
+    public static void adicionarFuncionario(){
         Pessoa base = Leitor.lerPessoa();
         Funcionario novo = null;
         System.out.println("1 - Recepcionista");
@@ -40,8 +40,17 @@ public class MenuAdministrativo {
             System.err.println(Ex.getMessage());
         }
     }
-    public static void listar(){
-        
+    public static void listarFuncionarios(){
+
+    }
+    public static void excluirFuncionario(){
+
+    }
+    //public static Funcionario buscarFuncionario(){
+    
+    //}
+    public static void modificarFuncionario(){
+
     }
     private static Medico adicionarMedico(Pessoa pessoa){
         System.out.println("Informe o CRM do medico:");

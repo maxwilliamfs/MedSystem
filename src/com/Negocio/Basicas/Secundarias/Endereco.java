@@ -4,6 +4,12 @@ public class Endereco {
     //Atributos
     private String logradouro,municipio,estado,cep,numero;
 
+    //toString
+    public String toString(){
+        return "Logradouro: " + this.getLogradouro() + ",\nMunicipio: " + this.getMunicipio() + ",\nEstado: " + this.getEstado() + ",\nNumero: " + this.getNumero() + ",\nCEP:" + this.getCep();
+    }
+
+    //Getters e Stters
     public String getLogradouro() {
         return logradouro;
     }

@@ -5,6 +5,11 @@ public class Data {
     //Atributos
     private int dia,mes,ano;
 
+    //toString
+    public String toString(){
+        return this.getDia() + "/" + this.getMes() + "/" + this.getAno();
+    }
+
     //Getters e Setters
     public int getDia() {
         return dia;

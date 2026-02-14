@@ -2,14 +2,14 @@ package com.Negocio.Controladores;
 
 import java.util.ArrayList;
 
-import com.Dados.ArquivoFuncionario;
 import com.Dados.Interfaces.IRepositorioFuncionario;
+import com.Dados.RepositoriosCSV.RepositorioFuncionarioCSV;
 import com.Negocio.Basicas.Funcionario;
 import com.Negocio.Excessoes.MedSystemException;
 
 public class ControladorFuncionario {
     //Atributos
-    IRepositorioFuncionario repositorioFuncionario = new ArquivoFuncionario();
+    IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioCSV();
 
     //Metodos Funcionarios
     public void adicionar(Funcionario funcionario) throws MedSystemException{
