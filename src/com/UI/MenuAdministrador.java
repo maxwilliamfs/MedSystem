@@ -10,7 +10,7 @@ import com.Negocio.Basicas.Recepcionista;
 import com.Negocio.Basicas.Enuns.Especialidade;
 import com.Negocio.Excessoes.MedSystemException;
 
-public class MenuAdministrativo {
+public class MenuAdministrador {
     public static void adicionarFuncionario(){
         Pessoa base = Leitor.lerPessoa();
         Funcionario novo = null;

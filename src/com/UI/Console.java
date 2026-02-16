@@ -60,7 +60,7 @@ public class Console {
         int op = Leitor.lerInteiros("Informe a opcao desejada:", 1, 7);
         switch (op) {
             case 1:
-                MenuAdministrativo.adicionarFuncionario();
+                MenuAdministrador.adicionarFuncionario();
                 break;
             case 2:
                 break;

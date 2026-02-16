@@ -28,7 +28,7 @@ public class ControladorConsulta {
         return repositorioConsulta.buscar(CPF);
     }*/
 
-    //Metodos
+    //Outros Metodos
     //public ArrayList<ConsultaAbstrata> listarTriagem(){}
     public void realizarTriagem(int id, String sintomas, GravidadeConsulta gravidade){}
     //Metodos do Medico
