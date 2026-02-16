@@ -16,7 +16,7 @@ public abstract class ConsultaAbstrata implements Serializable {
     private Data data;
     private Horario horarioInicio;
     private Horario horarioFim;
-    private String sintomasInciais;
+    private String sintomasIniciais;
     private GravidadeConsulta gravidade;
     private StatusConsulta status;
     private PrescricaoMedica prescricaoMedica;
@@ -87,10 +87,10 @@ public abstract class ConsultaAbstrata implements Serializable {
     public void setPrescricaoMedica(PrescricaoMedica prescricaoMedica) {
         this.prescricaoMedica = prescricaoMedica;
     }
-    public String getSintomasInciais() {
-        return sintomasInciais;
+    public String getSintomasIniciais() {
+        return sintomasIniciais;
     }
-    public void setSintomasInciais(String sintomasInciais) {
-        this.sintomasInciais = sintomasInciais;
+    public void setSintomasIniciais(String sintomasIniciais) {
+        this.sintomasIniciais = sintomasIniciais;
     }
 }

@@ -97,11 +97,13 @@ public class Leitor {
         System.out.println("Informe o numero da residencia:");
         endereco.setNumero(Leitor.getScanner().nextLine());
         System.out.println("Informe o municipio:");
-        endereco.setNumero(Leitor.getScanner().nextLine());
+        endereco.setMunicipio(Leitor.getScanner().nextLine());
         System.out.println("Informe o estado:");
         endereco.setEstado(Leitor.getScanner().nextLine());
         System.out.println("Informe o CEP:");
         endereco.setCep(Leitor.getScanner().nextLine());
+        
+        
 
         //Formatacao da Data
         System.out.println("Informe a data de nascimento (Formato: DD/MM/AAAA)");
@@ -115,7 +117,8 @@ public class Leitor {
         } catch (DateTimeParseException e) {
             System.out.println("ERRO: Data inválida! Use o formato dia/mês/ano.");
         }
-
+        novo.setEndereco(endereco);
+        novo.setDataNascimento(dataNascimento);
         return novo;
     }
 }

@@ -9,7 +9,7 @@ import com.Negocio.Excessoes.MedSystemException;
 
 public class ControladorFuncionario {
     //Atributos
-    IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioCSV();
+    private IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioCSV();
 
     //Metodos Funcionarios
     public void adicionar(Funcionario funcionario) throws MedSystemException{

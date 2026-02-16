@@ -1,6 +1,10 @@
 package com.Negocio.Basicas.Secundarias;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Procedimento {
+    //Atributos
     private String nome;
     private double preco;
 
@@ -23,4 +27,5 @@ public class Procedimento {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
 }
