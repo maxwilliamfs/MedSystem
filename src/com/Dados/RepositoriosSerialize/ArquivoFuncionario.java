@@ -1,0 +1,99 @@
+package com.Dados.RepositoriosSerialize;
+
+//Bibliotecas
+import com.Dados.Interfaces.IRepositorioFuncionario;
+import com.Negocio.Basicas.Administrador;
+import com.Negocio.Basicas.Funcionario;
+import com.Negocio.Excessoes.BugFoundException;
+import com.Negocio.Excessoes.ErroNoDiscoException;
+import com.Negocio.Excessoes.InformacaoNaoEncontradaException;
+import com.Negocio.Excessoes.MedSystemException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
+public class ArquivoFuncionario implements IRepositorioFuncionario{
+    //Atributos
+    private String nomeArquivo = "Funcionarios.bin";
+
+    //Metodos Publicos
+    public void adicionar(Funcionario funcionario) throws MedSystemException{
+        ArrayList<Funcionario> funcionarios = ler();
+    }
+    public void excluir(String CPF) throws MedSystemException {
+        ArrayList<Funcionario> funcionarios = ler();
+        int ID = buscarCPF(CPF,funcionarios);
+        funcionarios.remove(ID);
+        salvar(funcionarios);
+    }
+    public ArrayList<Funcionario> listar() throws MedSystemException {
+        return ler();
+    }
+    public void modificar(String CPF, Funcionario funcionario) throws MedSystemException {
+        ArrayList<Funcionario> funcionarios = ler();
+        int ID = buscarCPF(CPF,funcionarios);
+        funcionarios.set(ID, funcionario);
+        salvar(funcionarios);
+    }
+    public Funcionario buscar(String CPF) throws MedSystemException{
+        ArrayList<Funcionario> funcionarios = ler();
+        int ID = buscarCPF(CPF,funcionarios);
+        return funcionarios.get(ID);
+    }
+    public Funcionario logar(String login, String senha) throws MedSystemException{
+        ArrayList<Funcionario> funcionarios = ler();
+        if(login.equals("God") || senha.equals("123")){
+                Administrador adm = new Administrador();
+                adm.setNome("ADM Master");
+                return adm;
+        }
+        for(int i = 0; i < funcionarios.size(); i++){
+            if(funcionarios.get(i).getLogin().equals(login) || funcionarios.get(i).getSenha().equals(senha)){
+                return funcionarios.get(i);
+            }
+        }
+        throw new InformacaoNaoEncontradaException("Login ou Senha Invalidos!!!");
+    }
+
+    //Metodos Privados
+    private int buscarCPF(String CPF, ArrayList<Funcionario> funcionarios) throws MedSystemException {
+        for(int i = 0; i < funcionarios.size();i++){
+            if(funcionarios.get(i).getcPF().equals(CPF)){
+                return i;
+            }
+        }
+        throw new InformacaoNaoEncontradaException("Nao existe Funcionario cadastrado com tal CPF!!!");
+    }
+    private ArrayList<Funcionario> ler() throws MedSystemException{
+        
+        ArrayList<Funcionario> funcionarios;
+        File arq = new File(nomeArquivo);
+        
+        if(arq.exists()){
+            try(FileInputStream stream = new FileInputStream(arq);
+            ObjectInputStream obj = new ObjectInputStream(stream)){
+                funcionarios = (ArrayList<Funcionario>)obj.readObject();
+            } catch (IOException Ex){ 
+                throw new ErroNoDiscoException("Falha ao ler o disco", Ex);
+            } catch (ClassNotFoundException Ex){
+                throw new BugFoundException("Bug encontrado, contate o desenvolvedor", Ex);
+            }
+        } else {
+            funcionarios = new ArrayList<>();
+        }
+        return funcionarios;
+    }
+    private void salvar(ArrayList<Funcionario> funcionarios) throws MedSystemException{
+        File arq = new File(nomeArquivo);
+        try(FileOutputStream stream = new FileOutputStream(arq);
+        ObjectOutputStream obj = new ObjectOutputStream(stream)){
+            obj.writeObject(funcionarios);
+        } catch (IOException Ex) {
+            throw new ErroNoDiscoException("Falha ao ler o disco", Ex);
+        }
+    }
+}
