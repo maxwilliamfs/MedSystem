@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import com.Dados.Interfaces.IRepositorioFuncionario;
 import com.Dados.RepositoriosCSV.RepositorioFuncionarioCSV;
+import com.Dados.RepositoriosSerialize.RepositorioFuncionarioSerialize;
 import com.Negocio.Basicas.Funcionario;
 import com.Negocio.Excessoes.MedSystemException;
 
 public class ControladorFuncionario {
     //Atributos
-    private IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioCSV();
+    private IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioSerialize();
 
     //Metodos Funcionarios
     public void adicionar(Funcionario funcionario) throws MedSystemException{

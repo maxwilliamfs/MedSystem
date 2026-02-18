@@ -16,36 +16,36 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-public class ArquivoFuncionario implements IRepositorioFuncionario{
+public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
     //Atributos
     private String nomeArquivo = "Funcionarios.bin";
 
     //Metodos Publicos
     public void adicionar(Funcionario funcionario) throws MedSystemException{
-        ArrayList<Funcionario> funcionarios = ler();
+        ArrayList<Funcionario> funcionarios = lerDados();
     }
     public void excluir(String CPF) throws MedSystemException {
-        ArrayList<Funcionario> funcionarios = ler();
+        ArrayList<Funcionario> funcionarios = lerDados();
         int ID = buscarCPF(CPF,funcionarios);
         funcionarios.remove(ID);
-        salvar(funcionarios);
+        salvarDados(funcionarios);
     }
     public ArrayList<Funcionario> listar() throws MedSystemException {
-        return ler();
+        return lerDados();
     }
     public void modificar(String CPF, Funcionario funcionario) throws MedSystemException {
-        ArrayList<Funcionario> funcionarios = ler();
+        ArrayList<Funcionario> funcionarios = lerDados();
         int ID = buscarCPF(CPF,funcionarios);
         funcionarios.set(ID, funcionario);
-        salvar(funcionarios);
+        salvarDados(funcionarios);
     }
     public Funcionario buscar(String CPF) throws MedSystemException{
-        ArrayList<Funcionario> funcionarios = ler();
+        ArrayList<Funcionario> funcionarios = lerDados();
         int ID = buscarCPF(CPF,funcionarios);
         return funcionarios.get(ID);
     }
     public Funcionario logar(String login, String senha) throws MedSystemException{
-        ArrayList<Funcionario> funcionarios = ler();
+        ArrayList<Funcionario> funcionarios = lerDados();
         if(login.equals("God") || senha.equals("123")){
                 Administrador adm = new Administrador();
                 adm.setNome("ADM Master");
@@ -68,7 +68,7 @@ public class ArquivoFuncionario implements IRepositorioFuncionario{
         }
         throw new InformacaoNaoEncontradaException("Nao existe Funcionario cadastrado com tal CPF!!!");
     }
-    private ArrayList<Funcionario> ler() throws MedSystemException{
+    private ArrayList<Funcionario> lerDados() throws MedSystemException{
         
         ArrayList<Funcionario> funcionarios;
         File arq = new File(nomeArquivo);
@@ -78,7 +78,7 @@ public class ArquivoFuncionario implements IRepositorioFuncionario{
             ObjectInputStream obj = new ObjectInputStream(stream)){
                 funcionarios = (ArrayList<Funcionario>)obj.readObject();
             } catch (IOException Ex){ 
-                throw new ErroNoDiscoException("Falha ao ler o disco", Ex);
+                throw new ErroNoDiscoException("Falha ao lerDados o disco", Ex);
             } catch (ClassNotFoundException Ex){
                 throw new BugFoundException("Bug encontrado, contate o desenvolvedor", Ex);
             }
@@ -87,13 +87,13 @@ public class ArquivoFuncionario implements IRepositorioFuncionario{
         }
         return funcionarios;
     }
-    private void salvar(ArrayList<Funcionario> funcionarios) throws MedSystemException{
+    private void salvarDados(ArrayList<Funcionario> funcionarios) throws MedSystemException{
         File arq = new File(nomeArquivo);
         try(FileOutputStream stream = new FileOutputStream(arq);
         ObjectOutputStream obj = new ObjectOutputStream(stream)){
             obj.writeObject(funcionarios);
         } catch (IOException Ex) {
-            throw new ErroNoDiscoException("Falha ao ler o disco", Ex);
+            throw new ErroNoDiscoException("Falha ao lerDados o disco", Ex);
         }
     }
 }
