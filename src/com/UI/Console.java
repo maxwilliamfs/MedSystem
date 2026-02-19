@@ -7,7 +7,7 @@ import com.Negocio.Basicas.Funcionario;
 import com.Negocio.Basicas.Medico;
 import com.Negocio.Basicas.Recepcionista;
 import com.Negocio.Excessoes.MedSystemException;
-
+/* 
 public class Console {
     public static void main(String[] args) {
         boolean repetir = true;
@@ -85,3 +85,4 @@ public class Console {
     }
     
 }
+*/
