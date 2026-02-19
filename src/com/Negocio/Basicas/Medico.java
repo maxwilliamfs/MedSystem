@@ -9,10 +9,7 @@ public class Medico extends Funcionario {
 
     //Contrutor
     public Medico(Pessoa p, String crm, Especialidade especialidade){
-        this.setNome(p.getNome());
-        this.setEndereco(p.getEndereco());
-        this.setDataNascimento(p.getDataNascimento());
-        this.setcPF(p.getcPF());
+        super(p);
         this.setCrm(crm);
         this.setEspecialidade(especialidade);
     }

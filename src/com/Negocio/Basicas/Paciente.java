@@ -8,6 +8,15 @@ public class Paciente extends Pessoa {
     private double porcentagemDescontoConvenio;
     private ArrayList<ConsultaAbstrata> prontuario;
 
+    //Construtor
+    public Paciente(Pessoa p, String nomeConvenio, String tipoSanguineo, double porcentagemDescontoConvenio, ArrayList<ConsultaAbstrata> prontuario){
+        super(p);
+        this.setPorcentagemDescontoConvenio(porcentagemDescontoConvenio);
+        this.setProntuario(prontuario);
+        this.setnomeConvenio(nomeConvenio);
+        this.setTipoSanguineo(tipoSanguineo);
+    }
+
     //Getters e Setters
     public String getTipoSanguineo() {
         return tipoSanguineo;

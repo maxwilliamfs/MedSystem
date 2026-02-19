@@ -15,6 +15,21 @@ public class Pessoa implements Serializable {
         return "Nome: " + this.getNome() + ",\nCPF: " + this.getcPF() + ",\n" + this.getEndereco().toString() + ",\nData de Nascimento: " + this.getDataNascimento().toString();
     }
 
+    //Construtores
+    public Pessoa(String nome, String cPF, Endereco endereco, Data dataNascimento) {
+        this.setNome(nome); 
+        this.setcPF(cPF);
+        this.setEndereco(endereco);
+        this.setDataNascimento(dataNascimento);
+    }
+    public Pessoa(Pessoa p) {
+        this.setNome(p.getNome()); 
+        this.setcPF(p.getcPF());
+        this.setEndereco(p.getEndereco());
+        this.setDataNascimento(p.getDataNascimento());
+    }
+    public Pessoa(){}
+
     //Getters e Setters
     public String getNome() {
         return nome;
