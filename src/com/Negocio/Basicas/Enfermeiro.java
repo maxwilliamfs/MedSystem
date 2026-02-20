@@ -9,6 +9,10 @@ public class Enfermeiro extends Funcionario {
         this.setCorem(corem);
     }
 
+    public String toString(){
+        return super.toString() + ",\nCOREM:" + this.getCorem() + ".\n";
+    }
+
     //Getters e Setters
     public String getCorem() {
         return corem;

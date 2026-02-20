@@ -5,4 +5,9 @@ public class Recepcionista extends Funcionario{
     public Recepcionista(Pessoa p){
         super(p);
     }   
+
+    //toString
+    public String toString(){
+        return super.toString() + ".\n";
+    }
 }
