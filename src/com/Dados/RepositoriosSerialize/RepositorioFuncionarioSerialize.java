@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
     //Atributos
-    private String nomeArquivo = "Funcionarios.bin";
+    private String nomeArquivo = "Arquivos/Funcionarios.bin";
 
     //Metodos Publicos
     public void adicionar(Funcionario funcionario) throws MedSystemException{
