@@ -1,13 +1,18 @@
 package com.UI;
 
+import java.util.ArrayList;
+
+import com.Fachada.Fachada;
 import com.Negocio.Basicas.Administrador;
 import com.Negocio.Basicas.Enfermeiro;
+import com.Negocio.Basicas.Funcionario;
 import com.Negocio.Basicas.Medico;
 import com.Negocio.Basicas.Pessoa;
 import com.Negocio.Basicas.Recepcionista;
 import com.Negocio.Basicas.Enuns.Especialidade;
 import com.Negocio.Basicas.Secundarias.Data;
 import com.Negocio.Basicas.Secundarias.Endereco;
+import com.Negocio.Excessoes.MedSystemException;
 
 public class Teste {
     public static void main(String[] args) {
@@ -55,6 +60,17 @@ public class Teste {
         Enfermeiro enf = new Enfermeiro(rep, "12345-SP");
 
         //Execucao
-
+        try{
+            Fachada.getInstance().adicionarFuncionario(med);
+            Fachada.getInstance().adicionarFuncionario(rep);
+            Fachada.getInstance().adicionarFuncionario(enf);
+            ArrayList<Funcionario> funcs = new ArrayList<>();
+            funcs = Fachada.getInstance().listarFuncionario();
+            for(int i = 0; i < funcs.size(); i++){
+                System.out.println(funcs.get(i));
+            }
+        } catch (MedSystemException Ex) {
+            System.err.println(Ex.getMessage());
+        }
     }
 }

@@ -23,6 +23,8 @@ public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
     //Metodos Publicos
     public void adicionar(Funcionario funcionario) throws MedSystemException{
         ArrayList<Funcionario> funcionarios = lerDados();
+        funcionarios.add(funcionario);
+        salvarDados(funcionarios);
     }
     public void excluir(String CPF) throws MedSystemException {
         ArrayList<Funcionario> funcionarios = lerDados();
@@ -78,7 +80,7 @@ public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
             ObjectInputStream obj = new ObjectInputStream(stream)){
                 funcionarios = (ArrayList<Funcionario>)obj.readObject();
             } catch (IOException Ex){ 
-                throw new ErroNoDiscoException("Falha ao lerDados o disco", Ex);
+                throw new ErroNoDiscoException("Falha ao ler dados do disco", Ex);
             } catch (ClassNotFoundException Ex){
                 throw new BugFoundException("Bug encontrado, contate o desenvolvedor", Ex);
             }
@@ -93,7 +95,7 @@ public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
         ObjectOutputStream obj = new ObjectOutputStream(stream)){
             obj.writeObject(funcionarios);
         } catch (IOException Ex) {
-            throw new ErroNoDiscoException("Falha ao lerDados o disco", Ex);
+            throw new ErroNoDiscoException("Falha ao ler dados do disco", Ex);
         }
     }
 }

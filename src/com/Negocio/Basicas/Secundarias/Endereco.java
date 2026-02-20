@@ -1,6 +1,9 @@
 package com.Negocio.Basicas.Secundarias;
 
-public class Endereco {
+//Bibliotecas
+import java.io.Serializable;
+
+public class Endereco implements Serializable{
     //Atributos
     private String logradouro,municipio,estado,cep,numero;
 

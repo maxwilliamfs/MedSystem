@@ -1,7 +1,8 @@
 //Bibliotecas
 package com.Negocio.Basicas.Secundarias;
+import java.io.Serializable;
 
-public class Data {
+public class Data implements Serializable{
     //Atributos
     private int dia,mes,ano;
 
