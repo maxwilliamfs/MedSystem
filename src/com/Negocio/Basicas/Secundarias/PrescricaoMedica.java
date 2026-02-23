@@ -8,9 +8,21 @@ public class PrescricaoMedica {
     private ArrayList<Medicamento> medicamentos;
 
     //Metodos
-    public PrescricaoMedica(String obser, ArrayList<Medicamento> medi){
+    public PrescricaoMedica(String observacoes, ArrayList<Medicamento> medi){
         setMedicamentos(medi);
-        setObservacoes(obser);
+        setObservacoes(observacoes);
+    }
+
+    //toString
+    public String PrescricaoMedica(){
+        String retorno = "Observacoes: " + this.getObservacoes() + ",\n Medicamentos:";
+        for(int i = 0; i < medicamentos.size(); i++){
+            if(i != 0){
+                retorno += ",\n";
+            }
+            retorno +=  medicamentos.get(i).toString();
+        }
+        return retorno;
     }
 
     //Getters e Setters

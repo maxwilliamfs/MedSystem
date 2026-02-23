@@ -4,11 +4,13 @@ public class Enfermeiro extends Funcionario {
     private String corem;
 
     //Construtor
-    public Enfermeiro(Pessoa p, String corem){
-        super(p);
+    public Enfermeiro(Funcionario f, String corem){
+        super(f);
         this.setCorem(corem);
     }
 
+    //toString
+    @Override
     public String toString(){
         return super.toString() + ",\nCOREM:" + this.getCorem() + ".\n";
     }

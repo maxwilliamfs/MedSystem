@@ -2,8 +2,8 @@ package com.Negocio.Basicas;
 
 public class Administrador extends Funcionario {
     //Construtores
-    public Administrador(Pessoa p){
-        super(p);
+    public Administrador(Funcionario f){
+        super(f);
     }
     public Administrador(){
         super();

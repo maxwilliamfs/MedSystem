@@ -48,13 +48,13 @@ public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
     }
     public Funcionario logar(String login, String senha) throws MedSystemException{
         ArrayList<Funcionario> funcionarios = lerDados();
-        if(login.equals("God") || senha.equals("123")){
+        if(login.equals("God") && senha.equals("123")){
                 Administrador adm = new Administrador();
                 adm.setNome("ADM Master");
                 return adm;
         }
         for(int i = 0; i < funcionarios.size(); i++){
-            if(funcionarios.get(i).getLogin().equals(login) || funcionarios.get(i).getSenha().equals(senha)){
+            if(funcionarios.get(i).getcPF().equals(login) && funcionarios.get(i).getSenha().equals(senha)){
                 return funcionarios.get(i);
             }
         }

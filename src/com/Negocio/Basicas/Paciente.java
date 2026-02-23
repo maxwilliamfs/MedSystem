@@ -17,6 +17,12 @@ public class Paciente extends Pessoa {
         this.setTipoSanguineo(tipoSanguineo);
     }
 
+    //toString
+    @Override
+    public String toString() {
+        return super.toString() + ".\n";
+    }
+
     //Getters e Setters
     public String getTipoSanguineo() {
         return tipoSanguineo;

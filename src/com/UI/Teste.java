@@ -5,14 +5,18 @@ import java.util.ArrayList;
 
 import com.Fachada.Fachada;
 import com.Negocio.Basicas.Administrador;
+import com.Negocio.Basicas.ConsultaAbstrata;
+import com.Negocio.Basicas.ConsultaParticular;
 import com.Negocio.Basicas.Enfermeiro;
 import com.Negocio.Basicas.Funcionario;
 import com.Negocio.Basicas.Medico;
+import com.Negocio.Basicas.Paciente;
 import com.Negocio.Basicas.Pessoa;
 import com.Negocio.Basicas.Recepcionista;
 import com.Negocio.Basicas.Enuns.Especialidade;
 import com.Negocio.Basicas.Secundarias.Data;
 import com.Negocio.Basicas.Secundarias.Endereco;
+import com.Negocio.Basicas.Secundarias.Horario;
 import com.Negocio.Excessoes.MedSystemException;
 
 public class Teste {
@@ -53,64 +57,30 @@ public class Teste {
         dat3.setMes(1);
         dat3.setDia(1);
 
-        Pessoa p = new Pessoa("Julio da silva souza","123.456.789-10",end1,dat1);
-        Pessoa p2 = new Pessoa("Maria pereira dos santos", "109.876.543-21", end2, dat2);
-        Pessoa p3 = new Pessoa("Neymar junior cabral", "109.876.543-21", end3, dat3);
-        Medico med = new Medico(p, "12345-PE", Especialidade.CARDIOLOGISTA);   
-        Recepcionista rep = new Recepcionista(p2);
-        Enfermeiro enf = new Enfermeiro(p3, "12345-SP");
+        //Funcionarios
+        Funcionario f = new Funcionario("Julio da silva souza","123.456.789-10",end1,dat1, "12345678");
+        Funcionario f2 = new Funcionario("Maria pereira dos santos", "109.876.543-21", end2, dat2, "87654321");
+        Funcionario f3 = new Funcionario("Neymar junior cabral", "109.876.543-21", end3, dat3, "Ney12345");
+        Medico med = new Medico(f, "12345-PE", Especialidade.CARDIOLOGISTA);   
+        Recepcionista rep = new Recepcionista(f2);
+        Enfermeiro enf = new Enfermeiro(f3, "12345-SP");
+
+        //Pacientes
+        Pessoa p = new Pessoa("Carlos Andre", "102.342.167-32", end1, dat2);
+        ArrayList<ConsultaAbstrata> pront = new ArrayList<>();
+        Paciente pa = new Paciente(p, "UniMaia", "O+", 40, pront);
+
+        //Consultas
+        Horario h = new Horario(10,30);
+        Horario h2 = new Horario(11,00);
+        ConsultaParticular = new ConsultaParticular(med, pa, dat3, h, h2, "dor de cabeca", 1);
 
         //---------------------------Execucao-------------------------------
-
-        //Adicionar
-        /* 
-        try{
-            Fachada.getInstance().adicionarFuncionario(med);
-            Fachada.getInstance().adicionarFuncionario(rep);
-            Fachada.getInstance().adicionarFuncionario(enf);
-        } catch (MedSystemException Ex) {
-            System.err.println(Ex.getMessage());
-        }
-        */
-
-        //Remover
-        /*
-        try{
-            Fachada.getInstance().excluirFuncionario(med.getcPF());
-            Fachada.getInstance().excluirFuncionario("2");
-        } catch (MedSystemException Ex) {
-            System.err.println(Ex.getMessage());
-        }
-        */
-
-        //Modificar
-        /* 
-        try{
-            Recepcionista rep2 = rep;
-            rep2.setNome("Mudança de nome da silva");
-            Fachada.getInstance().modificarFuncionario(rep.getcPF(),rep2);
-        } catch (MedSystemException Ex) {
-            System.err.println(Ex.getMessage());
-        }
-        */
-
-        //Buscar
-
-        //Printar
         clear();
-        try{
-            ArrayList<Funcionario> funcs = new ArrayList<>();
-            funcs = Fachada.getInstance().listarFuncionario();
-            for(int i = 0; i < funcs.size(); i++){
-                System.out.println(funcs.get(i));
-            }
-        } catch (MedSystemException Ex) {
-            System.err.println(Ex.getMessage());
-        }
-
-
+        
     }
 
+    //Gerais
     public static void clear() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
@@ -120,6 +90,57 @@ public class Teste {
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+    
+    //Funcionarios
+    public static void logFunc(String cpf, String senha){
+        try{
+            clear();
+            System.out.println(Fachada.getInstance().logar(cpf, senha));
+        } catch (MedSystemException Ex){
+            System.err.println(Ex.getMessage());
+        }
+    }
+    public static void addFunc(Funcionario f){
+        try{
+            Fachada.getInstance().adicionarFuncionario(f);
+        } catch (MedSystemException Ex) {
+            System.err.println(Ex.getMessage());
+        }
+    }
+    public static void remfunc(String cpf){
+        try{
+            Fachada.getInstance().excluirFuncionario(cpf);
+        } catch (MedSystemException Ex) {
+            System.err.println(Ex.getMessage());
+        }
+    }
+    public static void modfunc(String cpf,Funcionario f){
+        try{
+            Fachada.getInstance().modificarFuncionario(cpf,f);
+        } catch (MedSystemException Ex) {
+            System.err.println(Ex.getMessage());
+        }
+    }
+    public static void busfunc(String cpf){
+        clear();
+        try{
+            System.out.println(Fachada.getInstance().buscarFuncionario(cpf));
+        } catch (MedSystemException Ex){
+            System.err.println(Ex.getMessage());
+        }
+    }
+    public static void prifunc(){
+        clear();
+        try{
+            ArrayList<Funcionario> funcs = new ArrayList<>();
+            funcs = Fachada.getInstance().listarFuncionario();
+            for(int i = 0; i < funcs.size(); i++){
+                System.out.println(funcs.get(i));
+            }
+        } catch (MedSystemException Ex) {
+            System.err.println(Ex.getMessage());
         }
     }
 }

@@ -8,13 +8,14 @@ public class Medico extends Funcionario {
     private Especialidade especialidade;
 
     //Contrutor
-    public Medico(Pessoa p, String crm, Especialidade especialidade){
-        super(p);
+    public Medico(Funcionario f, String crm, Especialidade especialidade){
+        super(f);
         this.setCrm(crm);
         this.setEspecialidade(especialidade);
     }
 
     //ToString
+    @Override
     public String toString(){
         return super.toString() + ",\nCRM: " + this.getCrm() + ",\nEspecialidade: " + this.getEspecialidade() + ".\n";
     }

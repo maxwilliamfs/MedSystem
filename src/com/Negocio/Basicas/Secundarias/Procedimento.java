@@ -1,8 +1,5 @@
 package com.Negocio.Basicas.Secundarias;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Procedimento {
     //Atributos
     private String nome;
@@ -12,6 +9,12 @@ public class Procedimento {
     public Procedimento(String nome, double preco){
         setNome(nome);
         setPreco(preco);
+    }
+
+    //toString
+    @Override
+    public String toString() {
+        return "Nome: " + this.getNome() + "Preco: " + this.getPreco();
     }
 
     //Getters e Setters

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import com.Negocio.Basicas.Secundarias.Data;
 import com.Negocio.Basicas.Secundarias.Horario;
+import com.Negocio.Basicas.Secundarias.Medicamento;
 import com.Negocio.Basicas.Secundarias.PrescricaoMedica;
 import com.Negocio.Basicas.Secundarias.Procedimento;
 import com.Negocio.Basicas.Enuns.GravidadeConsulta;
@@ -16,7 +17,7 @@ public abstract class ConsultaAbstrata implements Serializable {
     private Data data;
     private Horario horarioInicio;
     private Horario horarioFim;
-    private String sintomasIniciais;
+    private String sintomas;
     private GravidadeConsulta gravidade;
     private StatusConsulta status;
     private PrescricaoMedica prescricaoMedica;
@@ -25,6 +26,53 @@ public abstract class ConsultaAbstrata implements Serializable {
 
     //Metodos Abstratos
     protected abstract double precoFinal();
+
+    //Construtor
+    public ConsultaAbstrata(Medico medico, Paciente paciente, Data data, Horario horarioInicio, Horario horarioFim, String sintomas, int id) {
+        this.setMedico(medico);
+        this.setPaciente(paciente);
+        this.setData(data);
+        this.setHorarioFim(horarioFim);
+        this.setHorarioInicio(horarioInicio);
+        this.setSintomas(sintomas);
+        this.setGravidade(GravidadeConsulta.NAO_AVALIADA);
+        this.setStatus(StatusConsulta.TRIAGEM);
+        ArrayList<Medicamento> meds = new ArrayList<>();
+        PrescricaoMedica pres = new PrescricaoMedica("", meds);
+        this.setPrescricaoMedica(pres);
+        this.setId(id);
+        ArrayList<Procedimento> procedimentos = new ArrayList<>();
+        this.setProcedimentos(procedimentos);
+    }
+
+    //toString
+    @Override
+    public String toString(){
+        return "ID: " + this.getId() + ",\nNome do Medico: " + this.getMedico().getNome() + ",\nCPF do Medico: " + this.getMedico().getcPF() + ",\nNome do Paciente: " + this.getPaciente().getNome() + ",\nCPF do Paciente: " + this.getPaciente().getcPF() + ",\nData: " + this.getData() + "\nHorario inicio: " + this.getHorarioInicio() + ",\nHorario Fim: " + this.getHorarioFim() + ",\nSintomas: " + this.getSintomas() + ",\nGravidade: " + this.getGravidade() + ",\nStatus: " + this.getStatus() + ",\nObservacoes: " + this.getPrescricaoMedica().getObservacoes() + printMedicamentos() + ",\nProcedimentos:\n"+ printProcedimentos() + ",\n" + "Preco: " + printPreco() + ".\n";
+    }
+
+    //Metodos
+    private String printMedicamentos(){
+        if(this.getPrescricaoMedica().getMedicamentos().size() == 0){
+            return "Nenhum medicamento foi passado ate o momento";
+        } else {
+            return this.getPrescricaoMedica().getMedicamentos().toString();
+        }
+    }
+    private String printPreco(){
+        if(procedimentos.size() == 0){
+            return "Valor a ser calculado";
+        } else {
+            return "" + precoFinal();
+        }
+    }
+    private String printProcedimentos(){
+        String printacao = "";
+        for(Procedimento p : procedimentos){
+            printacao = printacao + p.toString();
+        }
+        return printacao;
+    }
 
     //Getters e Setters
     public Medico getMedico() {
@@ -87,10 +135,10 @@ public abstract class ConsultaAbstrata implements Serializable {
     public void setPrescricaoMedica(PrescricaoMedica prescricaoMedica) {
         this.prescricaoMedica = prescricaoMedica;
     }
-    public String getSintomasIniciais() {
-        return sintomasIniciais;
+    public String getSintomas() {
+        return sintomas;
     }
-    public void setSintomasIniciais(String sintomasIniciais) {
-        this.sintomasIniciais = sintomasIniciais;
+    public void setSintomas(String sintomas) {
+        this.sintomas = sintomas;
     }
 }

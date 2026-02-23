@@ -11,6 +11,7 @@ public class Pessoa implements Serializable {
     private Data dataNascimento;
 
     //toString
+    @Override
     public String toString(){
         return "Nome: " + this.getNome() + ",\nCPF: " + this.getcPF() + ",\n" + this.getEndereco().toString() + ",\nData de Nascimento: " + this.getDataNascimento().toString();
     }
@@ -21,6 +22,12 @@ public class Pessoa implements Serializable {
         this.setcPF(cPF);
         this.setEndereco(endereco);
         this.setDataNascimento(dataNascimento);
+    }
+    public Pessoa(Funcionario f) {
+        this.setNome(f.getNome()); 
+        this.setcPF(f.getcPF());
+        this.setEndereco(f.getEndereco());
+        this.setDataNascimento(f.getDataNascimento());
     }
     public Pessoa(Pessoa p) {
         this.setNome(p.getNome()); 
