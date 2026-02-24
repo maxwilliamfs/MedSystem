@@ -2,31 +2,34 @@ package com.Negocio.Controladores;
 
 import java.util.ArrayList;
 
+import com.Dados.Interfaces.IRepositorioConsulta;
+import com.Negocio.Excessoes.MedSystemException;
+import com.Dados.RepositoriosSerialize.RepositorioConsultaSerialize;
+import com.Negocio.Basicas.ConsultaAbstrata;
 import com.Negocio.Basicas.Enuns.GravidadeConsulta;
 import com.Negocio.Basicas.Secundarias.PrescricaoMedica;
 import com.Negocio.Basicas.Secundarias.Procedimento;
 
 public class ControladorConsulta {
+    //Atributos
+    IRepositorioConsulta repositorioConsulta = new RepositorioConsultaSerialize();
 
     //CRUD
-    /*public void adicionar(Consulta consulta) throws MedSystemException{
+    public void adicionar(ConsultaAbstrata consulta) throws MedSystemException{
         repositorioConsulta.adicionar(consulta);
     }
-    public void excluir(String CPF) throws MedSystemException{
-        repositorioConsulta.excluir(CPF);
+    public void excluir(int id) throws MedSystemException{
+        repositorioConsulta.excluir(id);
     }
-    public Consulta logar(String login, String senha) throws MedSystemException{
-        return repositorioConsulta.logar(login, senha);
+    public void modificar(int id, ConsultaAbstrata consulta) throws MedSystemException{
+        repositorioConsulta.modificar(id, consulta);
     }
-    public void modificar(String CPF, Consulta consulta) throws MedSystemException{
-        repositorioConsulta.modificar(CPF, consulta);
-    }
-    public ArrayList<Consulta> listar() throws MedSystemException{
+    public ArrayList<ConsultaAbstrata> listar() throws MedSystemException{
         return repositorioConsulta.listar();
     }
-    public Consulta buscar(String CPF) throws MedSystemException{
-        return repositorioConsulta.buscar(CPF);
-    }*/
+    public ConsultaAbstrata buscar(int id) throws MedSystemException{
+        return repositorioConsulta.buscar(id);
+    }
 
     //Outros Metodos
     //public ArrayList<ConsultaAbstrata> listarTriagem(){}

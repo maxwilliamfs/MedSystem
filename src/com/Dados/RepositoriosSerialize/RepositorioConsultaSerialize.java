@@ -21,7 +21,7 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
     //Atributos
     private String nomeArquivo = "Arquivos/Consultas.bin";
 
-    //Metodos Publicos
+    //Metodos CRUD
     public void adicionar(ConsultaAbstrata consulta) throws MedSystemException{
         ArrayList<ConsultaAbstrata> consultas = lerDados();
         if(consultas.isEmpty()){
@@ -52,6 +52,9 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
         int ID = buscarID(id,consultas);
         return consultas.get(ID);
     }
+
+    //Metodos Especiais
+    
 
     //Metodos Privados
     private int buscarID(int id, ArrayList<ConsultaAbstrata> consultas) throws MedSystemException {

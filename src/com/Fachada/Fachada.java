@@ -1,20 +1,23 @@
 package com.Fachada;
 
 import java.util.ArrayList;
-
 import com.Negocio.Basicas.ConsultaAbstrata;
 import com.Negocio.Basicas.Funcionario;
 import com.Negocio.Basicas.Paciente;
 import com.Negocio.Basicas.Secundarias.PrescricaoMedica;
 import com.Negocio.Basicas.Secundarias.Procedimento;
 import com.Negocio.Basicas.Enuns.GravidadeConsulta;
+import com.Negocio.Controladores.ControladorConsulta;
 import com.Negocio.Controladores.ControladorFuncionario;
+import com.Negocio.Controladores.ControladorPaciente;
 import com.Negocio.Excessoes.MedSystemException;
 
 public class Fachada {
     //Atributos
     private static Fachada instance = null;
     private static ControladorFuncionario controladorFuncionario = new ControladorFuncionario();
+    private static ControladorConsulta controladorConsulta = new ControladorConsulta();
+    private static ControladorPaciente controladorPaciente = new ControladorPaciente();
 
     //Metodos da Fachada
     private Fachada(){}
@@ -46,18 +49,38 @@ public class Fachada {
     }
 
     //Metodos Pacientes
-    public void adicionarPaciente(Paciente paciente) throws MedSystemException{}
-    public void excluirPaciente(String CPF) throws MedSystemException{}
-    public void modificarPaciente(String CPF, Paciente paciente) throws MedSystemException{}
-    //public ArrayList<Paciente> listarPaciente() throws MedSystemException{}
-    //public Paciente buscarPaciente(String CPF) throws MedSystemException{}
+    public void adicionarPaciente(Paciente paciente) throws MedSystemException{
+        controladorPaciente.adicionar(paciente);
+    }
+    public void excluirPaciente(String CPF) throws MedSystemException{
+        controladorPaciente.excluir(CPF);
+    }
+    public void modificarPaciente(String CPF, Paciente paciente) throws MedSystemException{
+        controladorPaciente.modificar(CPF, paciente);
+    }
+    public ArrayList<Paciente> listarPaciente() throws MedSystemException{
+        return controladorPaciente.listar();
+    }
+    public Paciente buscarPaciente(String CPF) throws MedSystemException{
+        return controladorPaciente.buscar(CPF);
+    }
 
     //Metodos Consultas
-    public void adicionarConsulta(ConsultaAbstrata consulta) throws MedSystemException{}
-    public void excluirConsulta(String CPF) throws MedSystemException{}
-    public void modificarConsulta(String CPF, ConsultaAbstrata consulta) throws MedSystemException{}
-    //public ArrayList<ConsultaAbstrata> listarConsulta() throws MedSystemException{}
-    //public ConsultaAbstrata buscarConsulta(String CPF) throws MedSystemException{}
+    public void adicionarConsulta(ConsultaAbstrata consulta) throws MedSystemException{
+        controladorConsulta.adicionar(consulta);
+    }
+    public void excluirConsulta(int id) throws MedSystemException{
+        controladorConsulta.excluir(id);
+    }
+    public void modificarConsulta(int id, ConsultaAbstrata consulta) throws MedSystemException{
+        controladorConsulta.modificar(id, consulta);
+    }
+    public ArrayList<ConsultaAbstrata> listarConsulta() throws MedSystemException{
+        return controladorConsulta.listar();
+    }
+    public ConsultaAbstrata buscarConsulta(int id) throws MedSystemException{
+        return controladorConsulta.buscar(id);
+    }
 
     //Metodos do Enfermeiro
     //public ArrayList<ConsultaAbstrata> listarTriagem(){}
