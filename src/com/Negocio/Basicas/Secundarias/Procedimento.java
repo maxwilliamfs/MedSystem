@@ -14,7 +14,7 @@ public class Procedimento {
     //toString
     @Override
     public String toString() {
-        return "Nome: " + this.getNome() + "Preco: " + this.getPreco();
+        return "Nome: " + this.getNome() + " / Preco: " + this.getPreco() + ",\n";
     }
 
     //Getters e Setters

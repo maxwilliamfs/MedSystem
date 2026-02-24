@@ -4,6 +4,13 @@ public class Horario {
     //Atributos
     private int hora,minuto;
 
+    //toString
+    @Override
+    public String toString(){
+        return "" + this.getHora() + ":" + this.getMinuto();
+    }
+
+
     //Construtor
     public Horario(int h, int m){
         this.setHora(h);

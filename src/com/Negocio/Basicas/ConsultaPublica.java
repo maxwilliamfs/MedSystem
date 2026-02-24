@@ -6,7 +6,7 @@ import com.Negocio.Basicas.Secundarias.Data;
 public class ConsultaPublica extends ConsultaAbstrata{
     //Construtor
     public ConsultaPublica(Medico medico, Paciente paciente, Data data, Horario horarioInicio, Horario horarioFim, String sintomas, int id) {
-        super(medico, paciente, data, horarioInicio, horarioFim, sintomas, id);
+        super(medico, paciente, data, horarioInicio, horarioFim, sintomas);
     }
 
     //Metodos

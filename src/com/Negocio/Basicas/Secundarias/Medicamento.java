@@ -3,12 +3,19 @@ package com.Negocio.Basicas.Secundarias;
 public class Medicamento {
     //Atributos
     private String nome, frequencia;
-    private double dosagem;
+    private String dosagem;
 
     //toString
     @Override
     public String toString(){
-        return "Nome: " + this.getNome() + "/ Dosagem:" + this.getDosagem() + "/ Frequencia" + this.getFrequencia();
+        return "Nome: " + this.getNome() + " / Dosagem: " + this.getDosagem() + " / Frequencia: " + this.getFrequencia() + ",\n";
+    }
+
+    //Construtor
+    public Medicamento(String nome, String frequencia, String dosagem){
+        this.setDosagem(dosagem);
+        this.setFrequencia(frequencia);
+        this.setNome(nome);
     }
 
     //Getters e Sstters
@@ -18,10 +25,10 @@ public class Medicamento {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public double getDosagem() {
+    public String getDosagem() {
         return dosagem;
     }
-    public void setDosagem(double dosagem) {
+    public void setDosagem(String dosagem) {
         this.dosagem = dosagem;
     }
     public String getFrequencia() {

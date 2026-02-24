@@ -2,9 +2,7 @@ package com.UI;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import com.Fachada.Fachada;
-import com.Negocio.Basicas.Administrador;
 import com.Negocio.Basicas.ConsultaAbstrata;
 import com.Negocio.Basicas.ConsultaParticular;
 import com.Negocio.Basicas.Enfermeiro;
@@ -15,8 +13,12 @@ import com.Negocio.Basicas.Pessoa;
 import com.Negocio.Basicas.Recepcionista;
 import com.Negocio.Basicas.Enuns.Especialidade;
 import com.Negocio.Basicas.Secundarias.Data;
+import com.Negocio.Basicas.Secundarias.Procedimento;
+import com.Negocio.Basicas.Secundarias.TabelaProcedimento;
 import com.Negocio.Basicas.Secundarias.Endereco;
 import com.Negocio.Basicas.Secundarias.Horario;
+import com.Negocio.Basicas.Secundarias.Medicamento;
+import com.Negocio.Basicas.Secundarias.PrescricaoMedica;
 import com.Negocio.Excessoes.MedSystemException;
 
 public class Teste {
@@ -65,19 +67,38 @@ public class Teste {
         Recepcionista rep = new Recepcionista(f2);
         Enfermeiro enf = new Enfermeiro(f3, "12345-SP");
 
+        //Consultas
+        Pessoa p2 = new Pessoa("Carlos Andre", "102.342.167-32", end1, dat2);
+        ArrayList<ConsultaAbstrata> pront2 = new ArrayList<>();
+        Paciente pa2 = new Paciente(p2, "UniMaia", "O+", 40, pront2);
+
+        Horario h = new Horario(10,30);
+        Horario h2 = new Horario(11,00);
+        ConsultaParticular con = new ConsultaParticular(med, pa2, dat3, h, h2, "dor de cabeca", 1);
+        Medicamento medi = new Medicamento("Dipirona", "De 8 em 8 horas", "3ml");
+        Medicamento medi2 = new Medicamento("Doralgina", "De 4 em 4 horas", "1 comprimido");
+        ArrayList<Medicamento> medics = new ArrayList<>();
+        medics.add(medi);
+        medics.add(medi2);
+        ArrayList<Procedimento> proces = new ArrayList<>();
+        Procedimento pro = TabelaProcedimento.getListaProcedimentos().get(2);
+        Procedimento pro2 = TabelaProcedimento.getListaProcedimentos().get(1);
+        proces.add(pro2);
+        proces.add(pro);
+        PrescricaoMedica pres = new PrescricaoMedica("Nao pode tomar sol por mais de 2 horas ao dia", medics);
+        con.setPrescricaoMedica(pres);
+        con.setProcedimentos(proces);
+
         //Pacientes
         Pessoa p = new Pessoa("Carlos Andre", "102.342.167-32", end1, dat2);
         ArrayList<ConsultaAbstrata> pront = new ArrayList<>();
+        pront.add(con);
         Paciente pa = new Paciente(p, "UniMaia", "O+", 40, pront);
-
-        //Consultas
-        Horario h = new Horario(10,30);
-        Horario h2 = new Horario(11,00);
-        ConsultaParticular = new ConsultaParticular(med, pa, dat3, h, h2, "dor de cabeca", 1);
+        pa.setProntuario(pront);
 
         //---------------------------Execucao-------------------------------
         clear();
-        
+
     }
 
     //Gerais

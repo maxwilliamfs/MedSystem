@@ -20,8 +20,22 @@ public class Paciente extends Pessoa {
     //toString
     @Override
     public String toString() {
-        return super.toString() + ".\n";
+        return super.toString() + ",\nPlano de Saude: " + this.getnomeConvenio() + ",\nPorcentagem de Desconto: " + this.getPorcentagemDescontoConvenio() +"%,\nTipo Sanguineo: " + this.getTipoSanguineo() + ",\n\nProntuario: " + printProtuario() + "\n"; 
     }
+
+    //Metodos
+    private String printProtuario(){
+        if(this.getProntuario().isEmpty()){
+            return "Nao ha prontuario ate o momento";
+        } else {
+            String printacao = "";
+            for(ConsultaAbstrata con : this.getProntuario()){
+                printacao += "\n\n" + con ;
+            }
+            return printacao;
+        }
+    }
+
 
     //Getters e Setters
     public String getTipoSanguineo() {

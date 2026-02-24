@@ -1,18 +1,13 @@
 package com.Negocio.Basicas;
 
-import java.util.ArrayList;
-import com.Negocio.Basicas.Enuns.GravidadeConsulta;
-import com.Negocio.Basicas.Enuns.StatusConsulta;
 import com.Negocio.Basicas.Secundarias.Horario;
-import com.Negocio.Basicas.Secundarias.Medicamento;
 import com.Negocio.Basicas.Secundarias.Data;
-import com.Negocio.Basicas.Secundarias.PrescricaoMedica;
-import com.Negocio.Basicas.Secundarias.Procedimento;
+
 
 public class ConsultaParticular extends ConsultaAbstrata {
     //Construtor
     public ConsultaParticular(Medico medico, Paciente paciente, Data data, Horario horarioInicio, Horario horarioFim, String sintomas, int id) {
-        super(medico, paciente, data, horarioInicio, horarioFim, sintomas, id);
+        super(medico, paciente, data, horarioInicio, horarioFim, sintomas);
     }
     
     //Metodos

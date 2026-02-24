@@ -14,12 +14,9 @@ public class PrescricaoMedica {
     }
 
     //toString
-    public String PrescricaoMedica(){
+    public String toString(){
         String retorno = "Observacoes: " + this.getObservacoes() + ",\n Medicamentos:";
         for(int i = 0; i < medicamentos.size(); i++){
-            if(i != 0){
-                retorno += ",\n";
-            }
             retorno +=  medicamentos.get(i).toString();
         }
         return retorno;
