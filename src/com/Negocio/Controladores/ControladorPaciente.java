@@ -4,6 +4,7 @@ import com.Dados.Interfaces.IRepositorioPaciente;
 import com.Dados.RepositoriosSerialize.RepositorioPacienteSerialize;
 import com.Negocio.Basicas.Paciente;
 import com.Negocio.Excessoes.InformacaoInvalidaException;
+import com.Negocio.Excessoes.InformacaoNaoEncontradaException;
 import com.Negocio.Excessoes.MedSystemException;
 import java.util.ArrayList;
 
@@ -14,7 +15,13 @@ public class ControladorPaciente {
     //CRUD
     public void adicionar(Paciente paciente) throws MedSystemException{
         verificarPaciente(paciente);
-        repositorioPaciente.adicionar(paciente);
+        try{
+            repositorioPaciente.buscar(paciente.getcPF());
+            throw new InformacaoInvalidaException("CPF ja existente no sistema!");
+        } catch (InformacaoNaoEncontradaException Ex){
+            repositorioPaciente.adicionar(paciente);
+        }
+        
     }
     public void excluir(String CPF) throws MedSystemException{
         verificarCPF(CPF);

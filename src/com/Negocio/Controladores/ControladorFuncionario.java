@@ -6,6 +6,7 @@ import com.Dados.Interfaces.IRepositorioFuncionario;
 import com.Dados.RepositoriosSerialize.RepositorioFuncionarioSerialize;
 import com.Negocio.Basicas.Funcionario;
 import com.Negocio.Excessoes.InformacaoInvalidaException;
+import com.Negocio.Excessoes.InformacaoNaoEncontradaException;
 import com.Negocio.Excessoes.MedSystemException;
 
 public class ControladorFuncionario {
@@ -15,7 +16,12 @@ public class ControladorFuncionario {
     //Metodos Funcionarios
     public void adicionar(Funcionario funcionario) throws MedSystemException{
         verificarFuncionario(funcionario);
-        repositorioFuncionario.adicionar(funcionario);
+        try{
+            repositorioFuncionario.buscar(funcionario.getcPF());
+            throw new InformacaoInvalidaException("CPF ja existente no sistema!");
+        } catch (InformacaoNaoEncontradaException Ex){
+            repositorioFuncionario.adicionar(funcionario);
+        }
     }
     public void excluir(String CPF) throws MedSystemException{
         verificarCPF(CPF);
@@ -41,6 +47,9 @@ public class ControladorFuncionario {
     private void verificarFuncionario(Funcionario funcionario) throws MedSystemException{
         if(funcionario == null || funcionario.getNome().trim().isBlank() || !funcionario.getDataNascimento().isDataValida()){
             throw new InformacaoInvalidaException("Informacao Invalida");
+        }
+        if(funcionario.getDataNascimento().getAno() < 1900){
+            throw new InformacaoInvalidaException("Data de Nascimento invalida!");
         }
     }
     private void verificarCPF(String CPF) throws MedSystemException{

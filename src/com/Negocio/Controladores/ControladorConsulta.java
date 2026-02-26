@@ -77,19 +77,19 @@ public class ControladorConsulta {
     //Metodos Privados
     private void verificarConsulta(ConsultaAbstrata consulta) throws MedSystemException{
         //Informacoes Basicas
-        if(consulta == null || !consulta.getData().isDataValida()){
+        if(consulta == null){
             throw new InformacaoInvalidaException("Informacao invalida!");
         }
 
         //Horario
         int inicioTotal = (consulta.getHorarioInicio().getHora() * 60) + consulta.getHorarioInicio().getMinuto();
         int finalTotal = (consulta.getHorarioFim().getHora() * 60) + consulta.getHorarioFim().getMinuto();
-        if(inicioTotal > finalTotal){
+        if(inicioTotal >= finalTotal){
             throw new InformacaoInvalidaException("Informe horarios validos!");
         }
 
         //Data
-        if(consulta.getData().isDataPassada()){
+        if(consulta.getData().isDataPassada() || !consulta.getData().isDataValida()){
             throw new InformacaoInvalidaException("Informe uma data valida!");
         }
 
