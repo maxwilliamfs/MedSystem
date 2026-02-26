@@ -2,7 +2,6 @@
 package com.Negocio.Basicas.Secundarias;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Data implements Serializable{
     //Atributos
@@ -27,6 +26,24 @@ public class Data implements Serializable{
     }
 
     //Metodos
+    public boolean isDataValida(){
+        try {
+            LocalDate dataDigitada = LocalDate.of(this.getAno(), this.getMes(), this.getDia());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public boolean isDataPassada() {
+        LocalDate dataDigitada = LocalDate.of(this.getAno(), this.getMes(), this.getDia());
+        LocalDate hoje = LocalDate.now();
+        return dataDigitada.isBefore(hoje);
+    }
+    public boolean isDataFutura() {
+        LocalDate dataDigitada = LocalDate.of(this.getAno(), this.getMes(), this.getDia());
+        LocalDate hoje = LocalDate.now();
+        return dataDigitada.isAfter(hoje);
+    }
     public static Data getDataHoje(){
         Data hoje = new Data();
         LocalDate sistema = LocalDate.now();

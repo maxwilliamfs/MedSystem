@@ -32,7 +32,7 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
         if(consultas.isEmpty()){
             consulta.setId(1);
         } else {
-            consulta.setId(consultas.size() - 1);
+            consulta.setId(consultas.get(consultas.size() - 1).getId() + 1);
         }
         consultas.add(consulta);
         salvarDados(consultas);
@@ -59,34 +59,6 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
     }
 
     //Metodos Especiais
-    public ArrayList<ConsultaAbstrata> listarTriagem() throws MedSystemException{
-        ArrayList<ConsultaAbstrata> triagem = new ArrayList<>();
-        ArrayList<ConsultaAbstrata> consultas = lerDados();
-        for(int i = 0; i < consultas.size(); i++){
-            if(consultas.get(i).getData().equals(Data.getDataHoje())){
-                triagem.add(consultas.get(i));
-            }
-        }
-        return triagem;
-    }
-    public void realizarTriagem(int id, String sintomas, GravidadeConsulta gravidade) throws MedSystemException{
-        ArrayList<ConsultaAbstrata> consultas = lerDados();
-        int iD = buscarID(id, consultas);
-        consultas.get(iD).setSintomas(sintomas);
-        consultas.get(iD).setGravidade(gravidade);
-        consultas.get(iD).setStatus(StatusConsulta.AGUARDANDO);
-        salvarDados(consultas);
-    }
-    public ArrayList<ConsultaAbstrata> agendaMedica(String CPF, Data dataAgenda) throws MedSystemException {
-        ArrayList<ConsultaAbstrata> consultas = lerDados();
-        ArrayList<ConsultaAbstrata> agenda = new ArrayList<>();
-        for(int i = 0; i < consultas.size(); i++){
-            if(consultas.get(i).getData().equals(dataAgenda) && consultas.get(i).getMedico().getcPF().equals(CPF)){
-                agenda.add(consultas.get(i));
-            }
-        }
-        return agenda;
-    }
     public void realizarConsulta(int id, ArrayList<Procedimento> procedimentos, PrescricaoMedica prescricaoMedica) throws MedSystemException {
         ArrayList<ConsultaAbstrata> consultas = lerDados();
         int iD = buscarID(id, consultas);
@@ -96,13 +68,13 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
     }
 
     //Metodos Privados
-    private int buscarID(int id, ArrayList<ConsultaAbstrata> consultas) throws MedSystemException {
+    public int buscarID(int id, ArrayList<ConsultaAbstrata> consultas) throws MedSystemException {
         for(int i = 0; i < consultas.size();i++){
             if(consultas.get(i).getId() == id){
                 return i;
             }
         }
-        throw new InformacaoNaoEncontradaException("Nao existe consulta cadastrado com tal CPF!!!");
+        throw new InformacaoNaoEncontradaException("Nao existe consulta cadastrado com tal ID!!!");
     }
     private ArrayList<ConsultaAbstrata> lerDados() throws MedSystemException{
         
