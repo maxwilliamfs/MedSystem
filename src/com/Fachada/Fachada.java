@@ -6,6 +6,7 @@ import com.Negocio.Basicas.Funcionario;
 import com.Negocio.Basicas.Paciente;
 import com.Negocio.Basicas.Secundarias.PrescricaoMedica;
 import com.Negocio.Basicas.Secundarias.Procedimento;
+import com.Negocio.Basicas.Secundarias.Data;
 import com.Negocio.Basicas.Enuns.GravidadeConsulta;
 import com.Negocio.Controladores.ControladorConsulta;
 import com.Negocio.Controladores.ControladorFuncionario;
@@ -69,8 +70,8 @@ public class Fachada {
     public void adicionarConsulta(ConsultaAbstrata consulta) throws MedSystemException{
         controladorConsulta.adicionar(consulta);
     }
-    public void excluirConsulta(int id) throws MedSystemException{
-        controladorConsulta.excluir(id);
+    public void cancelarConsulta(int id) throws MedSystemException{
+        controladorConsulta.cancelar(id);
     }
     public void modificarConsulta(int id, ConsultaAbstrata consulta) throws MedSystemException{
         controladorConsulta.modificar(id, consulta);
@@ -83,12 +84,20 @@ public class Fachada {
     }
 
     //Metodos do Enfermeiro
-    //public ArrayList<ConsultaAbstrata> listarTriagem(){}
-    public void realizarTriagem(int id, String sintomas, GravidadeConsulta gravidade){}
+    public ArrayList<ConsultaAbstrata> listarTriagem() throws MedSystemException{
+        return controladorConsulta.listarTriagem();
+    }
+    public void realizarTriagem(int id, String sintomas, GravidadeConsulta gravidade) throws MedSystemException {
+        controladorConsulta.realizarTriagem(id, sintomas, gravidade);
+    }
 
     //Metodos do Medico
-    //public ArrayList<ConsultaAbstrata> agendaMedica(String CPF){}
-    public void realizarConsulta(int id, ArrayList<Procedimento> procedimentos, PrescricaoMedica prescricaoMedica){}
+    public ArrayList<ConsultaAbstrata> agendaMedica(String CPF, Data dataAgenda) throws MedSystemException {
+        return controladorConsulta.agendaMedica(CPF, dataAgenda);
+    }
+    public void realizarConsulta(int id, ArrayList<Procedimento> procedimentos, PrescricaoMedica prescricaoMedica) throws MedSystemException {
+        controladorConsulta.realizarConsulta(id, procedimentos, prescricaoMedica);
+    }
 
 
 

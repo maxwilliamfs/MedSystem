@@ -5,6 +5,11 @@ package com.Dados.RepositoriosSerialize;
 import com.Negocio.Basicas.Administrador;
 import com.Dados.Interfaces.IRepositorioConsulta;
 import com.Negocio.Basicas.ConsultaAbstrata;
+import com.Negocio.Basicas.Enuns.GravidadeConsulta;
+import com.Negocio.Basicas.Enuns.StatusConsulta;
+import com.Negocio.Basicas.Secundarias.Data;
+import com.Negocio.Basicas.Secundarias.PrescricaoMedica;
+import com.Negocio.Basicas.Secundarias.Procedimento;
 import com.Negocio.Excessoes.BugFoundException;
 import com.Negocio.Excessoes.ErroNoDiscoException;
 import com.Negocio.Excessoes.InformacaoNaoEncontradaException;
@@ -32,10 +37,10 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
         consultas.add(consulta);
         salvarDados(consultas);
     }
-    public void excluir(int id) throws MedSystemException {
+    public void cancelar(int id) throws MedSystemException {
         ArrayList<ConsultaAbstrata> consultas = lerDados();
         int ID = buscarID(id,consultas);
-        consultas.remove(ID);
+        consultas.get(ID).setStatus(StatusConsulta.CANCELADA);
         salvarDados(consultas);
     }
     public ArrayList<ConsultaAbstrata> listar() throws MedSystemException {
@@ -54,7 +59,41 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
     }
 
     //Metodos Especiais
-    
+    public ArrayList<ConsultaAbstrata> listarTriagem() throws MedSystemException{
+        ArrayList<ConsultaAbstrata> triagem = new ArrayList<>();
+        ArrayList<ConsultaAbstrata> consultas = lerDados();
+        for(int i = 0; i < consultas.size(); i++){
+            if(consultas.get(i).getData().equals(Data.getDataHoje())){
+                triagem.add(consultas.get(i));
+            }
+        }
+        return triagem;
+    }
+    public void realizarTriagem(int id, String sintomas, GravidadeConsulta gravidade) throws MedSystemException{
+        ArrayList<ConsultaAbstrata> consultas = lerDados();
+        int iD = buscarID(id, consultas);
+        consultas.get(iD).setSintomas(sintomas);
+        consultas.get(iD).setGravidade(gravidade);
+        consultas.get(iD).setStatus(StatusConsulta.AGUARDANDO);
+        salvarDados(consultas);
+    }
+    public ArrayList<ConsultaAbstrata> agendaMedica(String CPF, Data dataAgenda) throws MedSystemException {
+        ArrayList<ConsultaAbstrata> consultas = lerDados();
+        ArrayList<ConsultaAbstrata> agenda = new ArrayList<>();
+        for(int i = 0; i < consultas.size(); i++){
+            if(consultas.get(i).getData().equals(dataAgenda) && consultas.get(i).getMedico().getcPF().equals(CPF)){
+                agenda.add(consultas.get(i));
+            }
+        }
+        return agenda;
+    }
+    public void realizarConsulta(int id, ArrayList<Procedimento> procedimentos, PrescricaoMedica prescricaoMedica) throws MedSystemException {
+        ArrayList<ConsultaAbstrata> consultas = lerDados();
+        int iD = buscarID(id, consultas);
+        consultas.get(iD).setPrescricaoMedica(prescricaoMedica);
+        consultas.get(iD).setProcedimentos(procedimentos);
+        salvarDados(consultas);
+    }
 
     //Metodos Privados
     private int buscarID(int id, ArrayList<ConsultaAbstrata> consultas) throws MedSystemException {
