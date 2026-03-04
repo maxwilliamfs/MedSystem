@@ -1,14 +1,24 @@
 package com.medsystem.interfacegrafica;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
 
 public class HelloController {
+    //Declaracoes
     @FXML
-    private Label welcomeText;
+    private TextField txtUsuario;
+    @FXML
+    private PasswordField txtSenha;
 
+    //Metodos
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+        welcomeText.setText("Primeiro faça seu login!");
+    }
+    @FXML
+    procected void onEntrarBotao(){
+
     }
 }
