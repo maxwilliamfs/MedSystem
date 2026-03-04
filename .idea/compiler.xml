@@ -9,5 +9,8 @@
         <module name="interfacegrafica" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="com" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>
