@@ -10,6 +10,10 @@ public class Horario {
         return "" + this.getHora() + ":" + this.getMinuto();
     }
 
+    //Metodos
+    public String toCSV(){
+        return this.getHora() + ":" + this.getMinuto();
+    }
 
     //Construtor
     public Horario(int h, int m){

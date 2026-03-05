@@ -7,21 +7,15 @@ import com.negocio.basicas.ConsultaAbstrata;
 import com.negocio.basicas.enuns.StatusConsulta;
 import com.negocio.basicas.secundarias.PrescricaoMedica;
 import com.negocio.basicas.secundarias.Procedimento;
-import com.negocio.Excessoes.BugFoundException;
-import com.negocio.Excessoes.ErroNoDiscoException;
 import com.negocio.Excessoes.InformacaoNaoEncontradaException;
 import com.negocio.Excessoes.MedSystemException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
+
+import java.io.*;
 import java.util.ArrayList;
 
-public class RepositorioConsultaSerialize implements IRepositorioConsulta{
+public class RepositorioConsultaCSV implements IRepositorioConsulta{
     //Atributos
-    private String nomeArquivo = "Arquivos/Consultas.bin";
+    private String nomeArquivo = "Arquivos/Consultas.CSV";
 
     //Metodos CRUD
     public void adicionar(ConsultaAbstrata consulta) throws MedSystemException{
@@ -79,26 +73,16 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
         File arq = new File(nomeArquivo);
         
         if(arq.exists()){
-            try(FileInputStream stream = new FileInputStream(arq);
-            ObjectInputStream obj = new ObjectInputStream(stream)){
-                consultas = (ArrayList<ConsultaAbstrata>)obj.readObject();
-            } catch (IOException Ex){ 
-                throw new ErroNoDiscoException("Falha ao ler dados do disco", Ex);
-            } catch (ClassNotFoundException Ex){
-                throw new BugFoundException("Bug encontrado, contate o desenvolvedor", Ex);
-            }
+            try{}
         } else {
             consultas = new ArrayList<>();
         }
         return consultas;
     }
-    private void salvarDados(ArrayList<ConsultaAbstrata> consultas) throws MedSystemException{
-        File arq = new File(nomeArquivo);
-        try(FileOutputStream stream = new FileOutputStream(arq);
-        ObjectOutputStream obj = new ObjectOutputStream(stream)){
-            obj.writeObject(consultas);
-        } catch (IOException Ex) {
-            throw new ErroNoDiscoException("Falha ao ler dados do disco", Ex);
+    private void salvarDados(ConsultaAbstrata consultas) throws MedSystemException{
+        new File(nomeArquivo).getParentFile().mkdirs();
+        try () {
+
         }
     }
 }

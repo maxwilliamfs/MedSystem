@@ -15,7 +15,7 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-public class RepositorioPacienteSerialize implements IRepositorioPaciente{
+public class RepositorioPacienteCSV implements IRepositorioPaciente{
     //Atributos
     private String nomeArquivo = "Arquivos/Pacientes.bin";
 
@@ -75,6 +75,7 @@ public class RepositorioPacienteSerialize implements IRepositorioPaciente{
         return pacientes;
     }
     private void salvarDados(ArrayList<Paciente> pacientes) throws MedSystemException{
+        new File(nomeArquivo).getParentFile().mkdirs();
         File arq = new File(nomeArquivo);
         try(FileOutputStream stream = new FileOutputStream(arq);
         ObjectOutputStream obj = new ObjectOutputStream(stream)){

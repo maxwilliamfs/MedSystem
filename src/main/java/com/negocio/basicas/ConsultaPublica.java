@@ -11,6 +11,11 @@ public class ConsultaPublica extends ConsultaAbstrata{
 
     //Metodos
     @Override
+    public String toCSV() {
+        return super.toCSV() + ",Publica";
+    }
+
+    @Override
     public double precoFinal(){
         return 0;
     }

@@ -29,6 +29,11 @@ public class Funcionario extends Pessoa {
         super();
     } 
 
+    //Metodos
+    public String toCSV(){
+        return super.getCSV() + "," + this.getSenha();
+    }
+
     //Getters e Setters
     public String getSenha() {
         return senha;

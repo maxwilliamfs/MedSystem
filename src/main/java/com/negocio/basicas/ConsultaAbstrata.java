@@ -51,6 +51,23 @@ public abstract class ConsultaAbstrata implements Serializable {
     }
 
     //Metodos
+    public String toCSV(){
+        return this.getId() + "," + this.getMedico().getcPF() + "," + this.getPaciente().getcPF() + "," + this.getData().toCSV() + "," + this.getGravidade() + "," + this.getStatus() + "," + this.getHorarioInicio().toCSV() + "," + this.getHorarioFim().toCSV() + "," + this.getSintomas().replace(",","-") + "," + this.getPrescricaoMedica().toCSV() + "," + this.procedimentosToCSV();
+    }
+    private String procedimentosToCSV(){
+        if(this.getProcedimentos().isEmpty()){
+            return "NADA";
+        }
+        String retorno = "";
+        for(int i = 0; i < this.getProcedimentos().size(); i++){
+            if(i == 0){
+                retorno = this.getProcedimentos().get(i).toCSV();
+            } else {
+                retorno += "/" + this.getProcedimentos().get(i).toCSV();
+            }
+        }
+        return retorno;
+    }
     private String printMedicamentos(){
         if(this.getPrescricaoMedica().getMedicamentos().size() == 0){
             return "Nenhum medicamento ate o momento";

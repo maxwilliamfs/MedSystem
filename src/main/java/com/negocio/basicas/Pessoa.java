@@ -37,6 +37,11 @@ public class Pessoa implements Serializable {
     }
     public Pessoa(){}
 
+    //Metodos
+    public String toCSV(){
+        return this.getNome() + "," + this.getcPF() + "," + this.getEndereco().toCSV() + "," + this.getDataNascimento().toCSV();
+    }
+
     //Getters e Setters
     public String getNome() {
         return nome;

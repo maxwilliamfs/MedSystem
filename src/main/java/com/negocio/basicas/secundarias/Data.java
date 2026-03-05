@@ -11,6 +11,15 @@ public class Data implements Serializable{
     public String toString(){
         return this.getDia() + "/" + this.getMes() + "/" + this.getAno();
     }
+
+    //Construtor
+    public Data(int dia, int mes, int ano){
+        this.setDia(dia);
+        this.setMes(mes);
+        this.setAno(ano);
+    }
+    public Data(){}
+
     //Equals
     @Override
     public boolean equals(Object obj) {
@@ -26,6 +35,9 @@ public class Data implements Serializable{
     }
 
     //Metodos
+    public String toCSV(){
+        return this.getDia() + "/" + this.getMes() + "/" + this.getAno();
+    }
     public boolean isDataValida(){
         try {
             LocalDate dataDigitada = LocalDate.of(this.getAno(), this.getMes(), this.getDia());

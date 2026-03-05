@@ -10,6 +10,9 @@ public class Procedimento {
         setNome(nome);
         setPreco(preco);
     }
+    public String toCSV(){
+        return this.getNome() + "|" + this.getPreco();
+    }
 
     //toString
     @Override

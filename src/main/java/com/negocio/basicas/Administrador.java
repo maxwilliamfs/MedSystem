@@ -9,6 +9,12 @@ public class Administrador extends Funcionario {
         super();
     }
 
+    //Metodos
+    @Override
+    public String toCSV(){
+        return super.toCSV() + ",Administrador";
+    }
+
     //toString
     public String toString(){
         return super.toString() + ".\n";

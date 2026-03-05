@@ -19,6 +19,12 @@ public class Medico extends Funcionario {
     public String toString(){
         return super.toString() + ",\nCRM: " + this.getCrm() + ",\nEspecialidade: " + this.getEspecialidade() + ".\n";
     }
+
+    //Metodos
+    @Override
+    public String toCSV(){
+        return super.toCSV() + ",Medico," + this.getEspecialidade() + "," + this.getCrm();
+    }
     
     //Getters e Setters
     public String getCrm() {

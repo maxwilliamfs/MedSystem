@@ -11,4 +11,10 @@ public class Recepcionista extends Funcionario{
     public String toString(){
         return super.toString() + ".\n";
     }
+
+    //Metodos
+    @Override
+    public String toCSV(){
+        return super.toCSV() + ",Recepcionista";
+    }
 }

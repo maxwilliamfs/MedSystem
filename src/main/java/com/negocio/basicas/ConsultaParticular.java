@@ -11,6 +11,12 @@ public class ConsultaParticular extends ConsultaAbstrata {
     }
     
     //Metodos
+
+    @Override
+    public String toCSV() {
+        return super.toCSV() + ",Particular";
+    }
+
     private double calcularPrecoBruto(){
         double bruto = 0;
         for(int i = 0; i < getProcedimentos().size(); i++){

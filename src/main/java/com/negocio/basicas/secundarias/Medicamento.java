@@ -18,6 +18,11 @@ public class Medicamento {
         this.setNome(nome);
     }
 
+    //Metodos
+    public String toCSV(){
+        return this.getNome() + "|" + this.getFrequencia() + "|" + this.getDosagem();
+    }
+
     //Getters e Sstters
     public String getNome() {
         return nome;

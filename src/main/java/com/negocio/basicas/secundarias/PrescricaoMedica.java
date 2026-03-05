@@ -7,11 +7,30 @@ public class PrescricaoMedica {
     private String observacoes;
     private ArrayList<Medicamento> medicamentos;
 
-    //Metodos
+    //Construtor
     public PrescricaoMedica(String observacoes, ArrayList<Medicamento> medi){
         setMedicamentos(medi);
         setObservacoes(observacoes);
     }
+
+    //Metodos
+    public String toCSV(){
+        String obser = this.getObservacoes().replace(",","-");
+        String retorno = obser + ",";
+        if(this.getMedicamentos().isEmpty()){
+            retorno += "NADA";
+            return retorno;
+        }
+        for(int i = 0; i < this.getMedicamentos().size(); i++){
+            if(i == 0){
+                retorno += this.getMedicamentos().get(i).toCSV();
+            } else {
+                retorno += "/" + this.getMedicamentos().get(i).toCSV();
+            }
+        }
+        return retorno;
+    }
+
 
     //toString
     public String toString(){

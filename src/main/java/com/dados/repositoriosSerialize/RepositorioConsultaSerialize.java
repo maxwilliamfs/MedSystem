@@ -93,6 +93,7 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
         return consultas;
     }
     private void salvarDados(ArrayList<ConsultaAbstrata> consultas) throws MedSystemException{
+        new File(nomeArquivo).getParentFile().mkdirs();
         File arq = new File(nomeArquivo);
         try(FileOutputStream stream = new FileOutputStream(arq);
         ObjectOutputStream obj = new ObjectOutputStream(stream)){

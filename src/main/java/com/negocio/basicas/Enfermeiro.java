@@ -15,6 +15,12 @@ public class Enfermeiro extends Funcionario {
         return super.toString() + ",\nCOREM:" + this.getCorem() + ".\n";
     }
 
+    //Metodos
+    @Override
+    public String toCSV(){
+        return super.toCSV() + ",Enfermeiro," + this.getCorem();
+    }
+
     //Getters e Setters
     public String getCorem() {
         return corem;

@@ -7,9 +7,21 @@ public class Endereco implements Serializable{
     //Atributos
     private String logradouro,municipio,estado;
 
+    //Construtor
+    public Endereco(String logradouro, String municipio, String estado){
+        this.setLogradouro(logradouro);
+        this.setMunicipio(municipio);
+        this.setEstado(estado);
+    }
+
     //toString
     public String toString(){
         return "Logradouro: " + this.getLogradouro() + ",\nMunicipio: " + this.getMunicipio() + ",\nEstado: " + this.getEstado();
+    }
+
+    //Metodos
+    public String toCSV(){
+        return this.getLogradouro() + "," + this.getMunicipio() + "," + this.getEstado();
     }
 
     //Getters e Stters
