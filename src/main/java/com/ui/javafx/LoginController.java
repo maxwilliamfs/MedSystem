@@ -29,13 +29,16 @@ public class LoginController {
         String senha = txtSenha.getText();
         String caminhoNovaCena = "", tituloNovaCena = "";
         try {
+            /*
             Funcionario funcionario = Fachada.getInstance().logar(usuario, senha);
             if(funcionario instanceof Medico){
                 caminhoNovaCena = "/com/ui/MenuMedico-view.fxml";
                 tituloNovaCena = "MedSystem - Menu Medico";
             } else if (funcionario instanceof Administrador){
-                caminhoNovaCena = "/com/ui/MenuAdministrador-view.fxml";
+            */
+                caminhoNovaCena = "/com/ui/menuAdministrativo/MenuAdministrador-view.fxml";
                 tituloNovaCena = "MedSystem - Menu Administrador";
+                /*
             } else if (funcionario instanceof Enfermeiro){
                 caminhoNovaCena = "/com/ui/MenuEnfermeiro-view.fxml";
                 tituloNovaCena = "MedSystem - Menu Enfermeiro";
@@ -43,9 +46,10 @@ public class LoginController {
                 caminhoNovaCena = "/com/ui/MenuRecepcionista-view.fxml";
                 tituloNovaCena = "MedSystem - Menu Recepcionista";
             }
+             */
             mudarCena(caminhoNovaCena,tituloNovaCena);
         } catch (MedSystemException Ex) {
-            alertaErro(Ex);
+            Uteis.alertaErro(Ex);
         }
     }
     private void mudarCena(String caminho, String titulo) throws MedSystemException{
@@ -60,12 +64,5 @@ public class LoginController {
         } catch (IOException Ex) {
             throw new ErroJavaFXException("Nao foi possivel acessar o menu!",Ex);
         }
-    }
-    private void alertaErro(MedSystemException Ex) {
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("ERRO!");
-        alerta.setHeaderText(Ex.getMessage());
-        alerta.setContentText(Ex.getInformacaoTecnica());
-        alerta.showAndWait();
     }
 }

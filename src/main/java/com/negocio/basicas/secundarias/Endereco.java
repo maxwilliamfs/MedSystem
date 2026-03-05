@@ -5,11 +5,11 @@ import java.io.Serializable;
 
 public class Endereco implements Serializable{
     //Atributos
-    private String logradouro,municipio,estado,cep,numero;
+    private String logradouro,municipio,estado;
 
     //toString
     public String toString(){
-        return "Logradouro: " + this.getLogradouro() + ",\nMunicipio: " + this.getMunicipio() + ",\nEstado: " + this.getEstado() + ",\nNumero: " + this.getNumero() + ",\nCEP:" + this.getCep();
+        return "Logradouro: " + this.getLogradouro() + ",\nMunicipio: " + this.getMunicipio() + ",\nEstado: " + this.getEstado();
     }
 
     //Getters e Stters
@@ -30,17 +30,5 @@ public class Endereco implements Serializable{
     }
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-    public String getCep() {
-        return cep;
-    }
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-    public String getNumero() {
-        return numero;
-    }
-    public void setNumero(String numero) {
-        this.numero = numero;
     }
 }
