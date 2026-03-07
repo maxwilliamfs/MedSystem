@@ -43,6 +43,19 @@ public abstract class ConsultaAbstrata implements Serializable {
         ArrayList<Procedimento> procedimentos = new ArrayList<>();
         this.setProcedimentos(procedimentos);
     }
+    public ConsultaAbstrata(int id, Medico m, Paciente p, Data d, Horario hI, Horario hF, String s, GravidadeConsulta g, PrescricaoMedica pres, ArrayList<Procedimento> pros, StatusConsulta st){
+        this.setMedico(m);
+        this.setPaciente(p);
+        this.setData(d);
+        this.setHorarioFim(hF);
+        this.setHorarioInicio(hI);
+        this.setGravidade(g);
+        this.setId(id);
+        this.setPrescricaoMedica(pres);
+        this.setProcedimentos(pros);
+        this.setSintomas(s);
+        this.setStatus(st);
+    }
 
     //toString
     @Override

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,10 +11,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="629.0" prefWidth="938.0" style="-fx-background-color: #c9c9c9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ui.javafx.MenuAdminController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="629.0" prefWidth="938.0" style="-fx-background-color: #c9c9c9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ui.javafx.Admin.CadastroController">
    <children>
       <StackPane prefHeight="83.0" prefWidth="600.0" style="-fx-background-color: #008eff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -41,49 +43,99 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField GridPane.rowIndex="1" />
+            <TextField fx:id="txtNome" GridPane.rowIndex="1" />
             <Label layoutX="136.0" layoutY="15.0" text="CPF" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField GridPane.rowIndex="3" />
+            <TextField fx:id="txtLogradouro" GridPane.rowIndex="3" />
             <Label text="Data de Nascimento" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtData" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Logradouro" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="txtEstado" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Label text="Municipio" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCPF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Estado" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtMunicipio" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Separator layoutY="238.0" prefHeight="14.0" prefWidth="938.0" />
-      <Button layoutX="559.0" layoutY="462.0" mnemonicParsing="false" style="-fx-background-color: #5bf200; -fx-background-radius: 5;" text="Avançar">
+      <Button fx:id="btAvancar" layoutX="801.0" layoutY="565.0" mnemonicParsing="false" style="-fx-background-color: #5bf200; -fx-background-radius: 5;" text="Avançar">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="462.0" layoutY="452.0" mnemonicParsing="false" style="-fx-background-color: #f54b21; -fx-background-radius: 5;" text="Voltar">
+      <Label layoutX="69.0" layoutY="268.0" text="Selecione o cargo:">
          <font>
             <Font size="20.0" />
          </font>
-      </Button>
+      </Label>
+      <ComboBox fx:id="cbCargo" layoutX="79.0" layoutY="308.0" prefWidth="150.0" promptText="Cargo" />
+      <Separator layoutX="303.0" layoutY="245.0" orientation="VERTICAL" prefHeight="384.0" prefWidth="3.0" />
+      <VBox layoutX="79.0" layoutY="386.0" prefHeight="200.0" prefWidth="150.0" spacing="20.0">
+         <children>
+            <VBox prefHeight="64.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="lbEspecifica" text="CRM">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtEspecifico" prefHeight="26.0" prefWidth="154.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="lbEspecialidade" text="Especialidade">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cbEspecialidade" prefWidth="150.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="459.0" layoutY="321.0" prefHeight="200.0" prefWidth="308.0" spacing="30.0">
+         <children>
+            <VBox prefHeight="60.0" prefWidth="249.0" spacing="5.0">
+               <children>
+                  <Label text="Informe a Senha">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="txtSenha1" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+               <children>
+                  <Label text="Confirme a Senha">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="txtSenha2" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

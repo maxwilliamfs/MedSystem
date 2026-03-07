@@ -1,7 +1,8 @@
-package com.ui.javafx;
+package com.ui.javafx.Admin;
 
 import com.negocio.Excessoes.ErroJavaFXException;
 import com.negocio.Excessoes.MedSystemException;
+import com.ui.javafx.Uteis;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

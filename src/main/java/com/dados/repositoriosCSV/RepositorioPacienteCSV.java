@@ -7,17 +7,16 @@ import com.negocio.Excessoes.BugFoundException;
 import com.negocio.Excessoes.ErroNoDiscoException;
 import com.negocio.Excessoes.InformacaoNaoEncontradaException;
 import com.negocio.Excessoes.MedSystemException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
+import com.negocio.basicas.Pessoa;
+import com.negocio.basicas.secundarias.Data;
+import com.negocio.basicas.secundarias.Endereco;
+
+import java.io.*;
 import java.util.ArrayList;
 
 public class RepositorioPacienteCSV implements IRepositorioPaciente{
     //Atributos
-    private String nomeArquivo = "Arquivos/Pacientes.bin";
+    private String nomeArquivo = "Arquivos/Pacientes.CSV";
 
     //Metodos Publicos
     public void adicionar(Paciente paciente) throws MedSystemException{
@@ -56,32 +55,53 @@ public class RepositorioPacienteCSV implements IRepositorioPaciente{
         throw new InformacaoNaoEncontradaException("Nao existe paciente cadastrado com tal CPF!!!");
     }
     private ArrayList<Paciente> lerDados() throws MedSystemException{
-        
-        ArrayList<Paciente> pacientes;
-        File arq = new File(nomeArquivo);
-        
-        if(arq.exists()){
-            try(FileInputStream stream = new FileInputStream(arq);
-            ObjectInputStream obj = new ObjectInputStream(stream)){
-                pacientes = (ArrayList<Paciente>)obj.readObject();
-            } catch (IOException Ex){ 
-                throw new ErroNoDiscoException("Falha ao ler dados do disco", Ex);
-            } catch (ClassNotFoundException Ex){
-                throw new BugFoundException("Bug encontrado, contate o desenvolvedor", Ex);
+        ArrayList<Paciente> pacientes = new ArrayList<>();
+        try(BufferedReader buffer = new BufferedReader(new FileReader(nomeArquivo))){
+            String linhaAtual;
+            while((linhaAtual = buffer.readLine()) != null){
+                String[] dados = linhaAtual.split(",");
+                String nome = dados[0];
+                String cpf = dados[1];
+
+                String logra = dados[2];
+                String muni = dados[3];
+                String estado = dados[4];
+                Endereco novoEnd = new Endereco(logra,muni,estado);
+
+                String dataNascimento = dados[5];
+                String[] datas = dataNascimento.split("/");
+                int dia = Integer.parseInt(datas[0]);
+                int mes = Integer.parseInt(datas[1]);
+                int ano = Integer.parseInt(datas[2]);
+                Data novaData = new Data(dia,mes,ano);
+
+                String novoNmConvenio = dados[6];
+                String novoPcCon = dados[7];
+                double novoPcConvenio = Double.parseDouble(novoPcCon);
+                String novoTipoS = dados[8];
+
+                Pessoa pe = new Pessoa(nome,cpf,novoEnd,novaData);
+                Paciente p = new Paciente(pe,novoNmConvenio,novoTipoS,novoPcConvenio);
+                pacientes.add(p);
             }
-        } else {
-            pacientes = new ArrayList<>();
+            return pacientes;
+        } catch (FileNotFoundException Ex) {
+            return pacientes;
+        } catch (IOException Ex){
+            throw new ErroNoDiscoException("Falha ao ler o disco", Ex);
         }
-        return pacientes;
+
+
     }
     private void salvarDados(ArrayList<Paciente> pacientes) throws MedSystemException{
         new File(nomeArquivo).getParentFile().mkdirs();
-        File arq = new File(nomeArquivo);
-        try(FileOutputStream stream = new FileOutputStream(arq);
-        ObjectOutputStream obj = new ObjectOutputStream(stream)){
-            obj.writeObject(pacientes);
+        try (FileWriter file = new FileWriter(nomeArquivo);
+        PrintWriter writer = new PrintWriter(file)) {
+            for(Paciente p : pacientes){
+                writer.println(p.toCSV());
+            }
         } catch (IOException Ex) {
-            throw new ErroNoDiscoException("Falha ao ler dados do disco", Ex);
+            throw new ErroNoDiscoException("Falha ao salvar no disco", Ex);
         }
     }
 }
