@@ -45,17 +45,17 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button minWidth="250.0" mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" text="Modificar Funcionário">
+                  <Button minWidth="250.0" mnemonicParsing="false" onAction="#onModificarbtn" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" text="Modificar Funcionário">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button minWidth="250.0" mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" text="Remover Funcionário">
+                  <Button minWidth="250.0" mnemonicParsing="false" onAction="#onRemoverBtn" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" text="Remover Funcionário">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #f54b21; -fx-text-fill: white; -fx-background-radius: 5;" text="Voltar">
+                  <Button mnemonicParsing="false" onAction="#onVoltarBtn" style="-fx-background-color: #f54b21; -fx-text-fill: white; -fx-background-radius: 5;" text="Voltar">
                      <font>
                         <Font size="20.0" />
                      </font>

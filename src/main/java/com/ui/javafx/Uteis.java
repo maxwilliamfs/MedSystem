@@ -5,6 +5,9 @@ import com.negocio.basicas.Enfermeiro;
 import com.negocio.basicas.Funcionario;
 import com.negocio.basicas.Medico;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
+import java.util.Optional;
 
 public class Uteis {
     public static void alertaErro(MedSystemException Ex) {
@@ -19,6 +22,13 @@ public class Uteis {
         alerta.setTitle("Sucesso!");
         alerta.setHeaderText(mensagem);
         alerta.showAndWait();
+    }
+    public static boolean alertaConfirmacao(String mensagem) {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Tem certeza?");
+        alerta.setHeaderText(mensagem);
+        Optional<ButtonType> resultado = alerta.showAndWait();
+        return resultado.isPresent() && resultado.get() == ButtonType.OK;
     }
     public static void alertaPerfilFuncionario(Funcionario f) {
 

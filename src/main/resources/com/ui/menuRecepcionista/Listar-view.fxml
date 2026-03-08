@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="629.0" prefWidth="938.0" style="-fx-background-color: #c9c9c9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ui.javafx.Admin.ListarController">
+   <children>
+      <StackPane prefHeight="83.0" prefWidth="600.0" style="-fx-background-color: #008eff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="21.0" text="Lista Funcionarios" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <TableView fx:id="tblFuncionarios" layoutX="7.0" layoutY="90.0" prefHeight="531.0" prefWidth="925.0">
+        <columns>
+          <TableColumn fx:id="clmNome" prefWidth="250.0" text="Nome" />
+          <TableColumn fx:id="clmCPF" minWidth="9.0" prefWidth="160.0" text="CPF" />
+            <TableColumn fx:id="clmCargo" minWidth="0.0" prefWidth="200.0" text="Cargo" />
+            <TableColumn fx:id="clmLogradouro" prefWidth="250.0" text="Logradouro" />
+            <TableColumn fx:id="clmMunicipio" minWidth="1.0" prefWidth="200.0" text="Municipio" />
+            <TableColumn fx:id="clmEstado" minWidth="4.0" prefWidth="200.0" text="Estado" />
+            <TableColumn fx:id="clmData" minWidth="-1.0" prefWidth="150.0" text="Data Nascimento" />
+            <TableColumn fx:id="clmCRM" minWidth="-1.0" prefWidth="150.0" text="CRM" />
+            <TableColumn fx:id="clmEspecialidade" minWidth="-1.0" prefWidth="200.0" text="Especialidade" />
+            <TableColumn fx:id="clmCOREN" minWidth="-1.0" prefWidth="150.0" text="COREN" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

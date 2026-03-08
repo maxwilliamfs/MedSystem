@@ -1,4 +1,4 @@
-package com.ui.javafx.Admin;
+package com.ui.javafx.Recepcao;
 
 import com.negocio.Excessoes.ErroJavaFXException;
 import com.negocio.Excessoes.MedSystemException;
@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MenuAdminController {
+public class MenuRecepcaoController {
     @FXML
     private StackPane pnPainelCentral;
 
