@@ -29,7 +29,6 @@ public class LoginController {
         String senha = txtSenha.getText();
         String caminhoNovaCena = "", tituloNovaCena = "";
         try {
-    /*
             Funcionario funcionario = Fachada.getInstance().logar(usuario, senha);
             if(funcionario instanceof Medico){
                 caminhoNovaCena = "/com/ui/MenuMedico-view.fxml";
@@ -41,11 +40,9 @@ public class LoginController {
                 caminhoNovaCena = "/com/ui/MenuEnfermeiro-view.fxml";
                 tituloNovaCena = "MedSystem - Menu Enfermeiro";
             } else if (funcionario instanceof Recepcionista){
-
-     */
                 caminhoNovaCena = "/com/ui/menuRecepcionista/MenuRecepcionista-view.fxml";
                 tituloNovaCena = "MedSystem - Menu Recepcionista";
-            //}
+            }
             mudarCena(caminhoNovaCena,tituloNovaCena);
         } catch (MedSystemException Ex) {
             Uteis.alertaErro(Ex);
