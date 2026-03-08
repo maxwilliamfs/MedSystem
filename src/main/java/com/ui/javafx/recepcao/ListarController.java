@@ -1,10 +1,11 @@
-package com.ui.javafx.Recepcao;
+package com.ui.javafx.recepcao;
 
 import com.fachada.Fachada;
 import com.negocio.Excessoes.MedSystemException;
 import com.negocio.basicas.Enfermeiro;
 import com.negocio.basicas.Funcionario;
 import com.negocio.basicas.Medico;
+import com.negocio.basicas.Paciente;
 import com.ui.javafx.Uteis;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -21,15 +22,21 @@ import java.util.ResourceBundle;
 public class ListarController implements Initializable {
     //Declaracoes
     @FXML
-    private TableView tblFuncionarios;
+    private TableView tblPacientes;
     @FXML
-    private TableColumn<Funcionario, String> clmNome, clmCPF, clmLogradouro,clmMunicipio,
-    clmEstado,clmCRM,clmCOREN,clmData,clmEspecialidade, clmCargo;
+    private TableColumn<Paciente, String> clmNome, clmCPF, clmLogradouro,clmMunicipio,
+    clmEstado,clmNomeConvenio, clmPorcentagemDesconto, clmTipoSanguineo,clmData;
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
         clmNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
         clmCPF.setCellValueFactory(new PropertyValueFactory<>("cPF"));
+        clmTipoSanguineo.setCellValueFactory(new PropertyValueFactory<>("TipoSanguineo"));
+        clmNomeConvenio.setCellValueFactory(new PropertyValueFactory<>("nomeConvenio"));
+
+        clmPorcentagemDesconto.setCellValueFactory(celula -> {
+            return new SimpleStringProperty(celula.getValue().getPorcentagemDescontoConvenio() + "");
+        });
 
         clmCPF.setCellValueFactory(celula -> {
             return new SimpleStringProperty(celula.getValue().getcPF());
@@ -50,38 +57,6 @@ public class ListarController implements Initializable {
             return new SimpleStringProperty(estado);
         });
 
-        clmCargo.setCellValueFactory(celula -> {
-            Funcionario f = celula.getValue();
-            return new SimpleStringProperty(f.getClass().getSimpleName());
-        });
-
-        clmCRM.setCellValueFactory(celula -> {
-            Funcionario f = celula.getValue();
-            if (f instanceof Medico) {
-                Medico m = (Medico) f;
-                return new SimpleStringProperty(String.valueOf(m.getCrm())); // Converte int para String
-            }
-            return new SimpleStringProperty("-");
-        });
-
-        clmEspecialidade.setCellValueFactory(celula -> {
-            Funcionario f = celula.getValue();
-            if (f instanceof Medico) {
-                Medico m = (Medico) f;
-                return new SimpleStringProperty(m.getEspecialidade().toString());
-            }
-            return new SimpleStringProperty("-");
-        });
-
-        clmCOREN.setCellValueFactory(celula -> {
-            Funcionario f = celula.getValue();
-            if (f instanceof Enfermeiro) {
-                Enfermeiro enf = (Enfermeiro) f;
-                return new SimpleStringProperty(enf.getCorem());
-            }
-            return new SimpleStringProperty("-");
-        });
-
         clmData.setCellValueFactory(celula -> {
             String dataTexto = celula.getValue().getDataNascimento().toString();
             return new SimpleStringProperty(dataTexto);
@@ -91,9 +66,9 @@ public class ListarController implements Initializable {
     }
     private void carregarTabela(){
         try{
-            ArrayList<Funcionario> listaOriginal = Fachada.getInstance().listarFuncionario();
-            ObservableList<Funcionario> listaParaTela = FXCollections.observableArrayList(listaOriginal);
-            tblFuncionarios.setItems(listaParaTela);
+            ArrayList<Paciente> listaOriginal = Fachada.getInstance().listarPaciente();
+            ObservableList<Paciente> listaParaTela = FXCollections.observableArrayList(listaOriginal);
+            tblPacientes.setItems(listaParaTela);
         } catch (MedSystemException Ex){
             Uteis.alertaErro(Ex);
         }

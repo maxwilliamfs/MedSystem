@@ -1,30 +1,34 @@
-package com.ui.javafx.Recepcao;
+package com.ui.javafx.recepcao;
 
 import com.fachada.Fachada;
 import com.negocio.Excessoes.InformacaoInvalidaException;
 import com.negocio.Excessoes.MedSystemException;
-import com.negocio.basicas.Funcionario;
 import com.ui.javafx.Uteis;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-public class BuscarController {
-    //Declaracoes
-    @FXML
-    private TextField txtBuscar;
+public class RemoverController {
 
-    //Metodos
     @FXML
-    protected void onBuscarbtn(){
-        String cpf = txtBuscar.getText();
+    private TextField txtRemover;
+
+    @FXML
+    protected void onRemoverbtn(){
+        String cpf = txtRemover.getText();
+
         if(!cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")){
             InformacaoInvalidaException ex = new InformacaoInvalidaException("Informe um CPF valido!");
             Uteis.alertaErro(ex);
             return;
         }
+
         try {
-            Funcionario f = Fachada.getInstance().buscarFuncionario(cpf);
-            Uteis.alertaPerfilFuncionario(f);
+            boolean popUp = Uteis.alertaConfirmacao("Tem certeza que deseja excluir esse paciente?");
+            if(popUp) {
+                Fachada.getInstance().excluirPaciente(cpf);
+                Uteis.alertaSucesso("Paciente removido com sucesso!");
+                txtRemover.setText("");
+            }
         } catch (MedSystemException Ex){
             Uteis.alertaErro(Ex);
         }

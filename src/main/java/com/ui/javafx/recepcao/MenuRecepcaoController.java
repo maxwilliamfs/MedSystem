@@ -1,4 +1,4 @@
-package com.ui.javafx.Recepcao;
+package com.ui.javafx.recepcao;
 
 import com.negocio.Excessoes.ErroJavaFXException;
 import com.negocio.Excessoes.MedSystemException;
@@ -21,7 +21,7 @@ public class MenuRecepcaoController {
     @FXML
     protected void onCasdastrarbtn() {
         try {
-            loadTelaCentro("/com/ui/menuAdministrativo/Cadastro-view.fxml");
+            loadTelaCentro("/com/ui/menuRecepcionista/Cadastro-view.fxml");
         } catch (MedSystemException Ex){
             Uteis.alertaErro(Ex);
         }
@@ -29,7 +29,7 @@ public class MenuRecepcaoController {
     @FXML
     protected void onListarbtn(){
         try {
-            loadTelaCentro("/com/ui/menuAdministrativo/Listar-view.fxml");
+            loadTelaCentro("/com/ui/menuRecepcionista/Listar-view.fxml");
         } catch (MedSystemException Ex){
             Uteis.alertaErro(Ex);
         }
@@ -37,7 +37,7 @@ public class MenuRecepcaoController {
     @FXML
     protected void onBuscarbtn(){
         try {
-            loadTelaCentro("/com/ui/menuAdministrativo/Buscar-view.fxml");
+            loadTelaCentro("/com/ui/menuRecepcionista/Buscar-view.fxml");
         } catch (MedSystemException Ex){
             Uteis.alertaErro(Ex);
         }
@@ -45,7 +45,7 @@ public class MenuRecepcaoController {
     @FXML
     protected void onModificarbtn(){
         try {
-            loadTelaCentro("/com/ui/menuAdministrativo/Modificar-view.fxml");
+            loadTelaCentro("/com/ui/menuRecepcionista/Modificar-view.fxml");
         } catch (MedSystemException Ex){
             Uteis.alertaErro(Ex);
         }
@@ -53,7 +53,7 @@ public class MenuRecepcaoController {
     @FXML
     protected void onRemoverBtn(){
         try {
-            loadTelaCentro("/com/ui/menuAdministrativo/Remover-view.fxml");
+            loadTelaCentro("/com/ui/menuRecepcionista/Remover-view.fxml");
         } catch (MedSystemException Ex){
             Uteis.alertaErro(Ex);
         }

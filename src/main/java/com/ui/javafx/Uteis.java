@@ -4,6 +4,7 @@ import com.negocio.Excessoes.MedSystemException;
 import com.negocio.basicas.Enfermeiro;
 import com.negocio.basicas.Funcionario;
 import com.negocio.basicas.Medico;
+import com.negocio.basicas.Paciente;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
@@ -59,4 +60,23 @@ public class Uteis {
         alerta.setContentText(textoPerfil);
         alerta.showAndWait();
     }
-}
+    public static void alertaPerfilPaciente(Paciente p) {
+
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Busca Concluída");
+        alerta.setHeaderText("Paciente Encontrado!");
+
+        String textoPerfil =
+                "Nome: " + p.getNome() + "\n" +
+                        "CPF: " + p.getcPF() + "\n" +
+                        "Cargo: " + p.getClass().getSimpleName() + "\n" +
+                        "Nome do Convenio: " + p.getnomeConvenio() + "\n" +
+                        "Porcentagem de Desconto Convenio: " + p.getPorcentagemDescontoConvenio() + "%\n" +
+                        "Tipo Sanguineo: " + p.getTipoSanguineo() + "\n" +
+                        "Municipio: " + p.getEndereco().getMunicipio() + "\n" +
+                        "Logradouro: " + p.getEndereco().getLogradouro() + "\n" +
+                        "Estado: " + p.getEndereco().getEstado();
+        alerta.setContentText(textoPerfil);
+        alerta.showAndWait();
+        }
+    }
