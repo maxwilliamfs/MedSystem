@@ -11,4 +11,10 @@ public class Uteis {
         alerta.setContentText(Ex.getInformacaoTecnica());
         alerta.showAndWait();
     }
+    public static void alertaSucesso(String mensagem) {
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Sucesso!");
+        alerta.setHeaderText(mensagem);
+        alerta.showAndWait();
+    }
 }

@@ -16,9 +16,16 @@ public class MenuAdminController {
 
     @FXML
     protected void onCasdastrarbtn() {
-        System.out.println("Deu!");
         try {
             loadTelaCentro("/com/ui/menuAdministrativo/Cadastro-view.fxml");
+        } catch (MedSystemException Ex){
+            Uteis.alertaErro(Ex);
+        }
+    }
+    @FXML
+    protected void onListarbtn(){
+        try {
+            loadTelaCentro("/com/ui/menuAdministrativo/Listar-view.fxml");
         } catch (MedSystemException Ex){
             Uteis.alertaErro(Ex);
         }

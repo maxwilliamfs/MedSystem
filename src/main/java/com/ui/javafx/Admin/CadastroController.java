@@ -1,14 +1,24 @@
 package com.ui.javafx.Admin;
 
+import com.fachada.Fachada;
+import com.negocio.Excessoes.InformacaoInvalidaException;
+import com.negocio.Excessoes.MedSystemException;
+import com.negocio.basicas.*;
+import com.negocio.basicas.enuns.Especialidade;
+import com.negocio.basicas.secundarias.Data;
+import com.negocio.basicas.secundarias.Endereco;
+import com.ui.javafx.Uteis;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class CadastroController implements Initializable{
@@ -17,9 +27,11 @@ public class CadastroController implements Initializable{
     @FXML
     private ComboBox<String> cbEspecialidade;
     @FXML
-    TextField txtEspecifico;
+    TextField txtEspecifico, txtNome,txtCPF,txtLogradouro,txtMunicipio,txtEstado,txtData;
     @FXML
     Label lbEspecifica, lbEspecialidade;
+    @FXML
+    PasswordField pfSenha1,pfSenha2;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,7 +85,76 @@ public class CadastroController implements Initializable{
         lbEspecialidade.setVisible(false);
         lbEspecialidade.setManaged(false);
     }
+    @FXML
     protected void onAvancarBtn(){
+        String senha1 = pfSenha1.getText(), senha2 = pfSenha2.getText(), especifico =
+        txtEspecifico.getText(), nome = txtNome.getText(), cpf = txtCPF.getText(),
+        logradouro = txtLogradouro.getText(), municipio = txtMunicipio.getText(),
+        estado = txtEstado.getText(), data = txtData.getText(), cargo = cbCargo.getValue(),
+        especialidade = cbEspecialidade.getValue();
 
+        if(!senha1.isBlank() && !senha2.isBlank() && !nome.isBlank() && !cpf.isBlank() &&
+        !logradouro.isBlank() && !municipio.isBlank() && !estado.isBlank() && !data.isBlank()
+        && cargo != null) {
+
+            if (senha1.equals(senha2)) {
+
+                if (cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
+
+                    if(data.matches("\\d{2}/\\d{2}/\\d{4}")){
+                        String[] datas = data.split("/");
+                        int di = Integer.parseInt(datas[0]), m = Integer.parseInt(datas[1]),
+                        a = Integer.parseInt(datas[2]);
+                        Data d = new Data(di,m,a);
+                        Endereco end = new Endereco(logradouro,municipio,estado);
+                        Funcionario f = new Funcionario(nome,cpf,end,d,senha2);
+                        Funcionario fun = null;
+
+                        if(cargo.equals("Adiministrador")){
+                            fun = new Administrador(f);
+                        } else if(cargo.equals("Recepcionista")){
+                            fun = new Recepcionista(f);
+                        } else if (cargo.equals("Enfermeiro")){
+                            if(!especifico.isBlank()){
+                               fun = new Enfermeiro(f,especifico);
+                            } else {
+                                erroInfo("Informe um COREN valido!");
+                                return;
+                            }
+                        } else if(cargo.equals("Medico")){
+                            if(!especifico.isBlank() && especialidade != null){
+                                Especialidade e = Especialidade.valueOf(especialidade.toUpperCase());
+                                fun = new Medico(f,especifico,e);
+                            } else {
+                                erroInfo("Especialidade ou CRM invalidos!");
+                                return;
+                            }
+                        }
+                        try {
+                            Fachada.getInstance().adicionarFuncionario(fun);
+                            Uteis.alertaSucesso("Funcionario cadastrado com Sucesso!");
+                        } catch (MedSystemException Ex) {
+                            Uteis.alertaErro(Ex);
+                        }
+                    } else {
+                        erroInfo("Informe uma Data no formato DD/MM/AAAA");
+                        return;
+                    }
+                } else {
+                    erroInfo("Informe um CPF no formato XXX.XXX.XXX-XX!");
+                    return;
+                }
+            } else {
+                erroInfo("Informe senhas iguais!");
+                return;
+            }
+        } else {
+            erroInfo("Preencha todos os campos!");
+            return;
+        }
+    }
+    private void erroInfo(String mensagem){
+        InformacaoInvalidaException Ex = new InformacaoInvalidaException(mensagem);
+        Uteis.alertaErro(Ex);
     }
 }

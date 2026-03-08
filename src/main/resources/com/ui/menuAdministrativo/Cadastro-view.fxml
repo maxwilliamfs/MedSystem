@@ -55,7 +55,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="txtData" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtData" text="DD/MM/AAAA" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Logradouro" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font size="15.0" />
@@ -67,7 +67,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="txtCPF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCPF" text="XXX.XXX.XXX-XX" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Estado" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font size="15.0" />
@@ -77,7 +77,7 @@
          </children>
       </GridPane>
       <Separator layoutY="238.0" prefHeight="14.0" prefWidth="938.0" />
-      <Button fx:id="btAvancar" layoutX="801.0" layoutY="565.0" mnemonicParsing="false" style="-fx-background-color: #5bf200; -fx-background-radius: 5;" text="Avançar">
+      <Button fx:id="btAvancar" layoutX="801.0" layoutY="565.0" mnemonicParsing="false" onAction="#onAvancarBtn" style="-fx-background-color: #5bf200; -fx-background-radius: 5;" text="Avançar">
          <font>
             <Font size="20.0" />
          </font>
@@ -122,7 +122,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="txtSenha1" />
+                  <PasswordField fx:id="pfSenha1" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
@@ -132,7 +132,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="txtSenha2" />
+                  <PasswordField fx:id="pfSenha2" />
                </children>
             </VBox>
          </children>
