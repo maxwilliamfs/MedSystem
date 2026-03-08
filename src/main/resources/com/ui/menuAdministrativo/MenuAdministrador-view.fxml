@@ -40,7 +40,7 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button minWidth="250.0" mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" text="Buscar Funcionário">
+                  <Button fx:id="btnBuscar" minWidth="250.0" mnemonicParsing="false" onAction="#onBuscarbtn" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" text="Buscar Funcionário">
                      <font>
                         <Font size="20.0" />
                      </font>

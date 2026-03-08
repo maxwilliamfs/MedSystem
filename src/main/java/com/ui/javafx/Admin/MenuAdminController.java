@@ -30,6 +30,14 @@ public class MenuAdminController {
             Uteis.alertaErro(Ex);
         }
     }
+    @FXML
+    protected void onBuscarbtn(){
+        try {
+            loadTelaCentro("/com/ui/menuAdministrativo/Buscar-view.fxml");
+        } catch (MedSystemException Ex){
+            Uteis.alertaErro(Ex);
+        }
+    }
     private void loadTelaCentro(String caminho) throws MedSystemException {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource(caminho));

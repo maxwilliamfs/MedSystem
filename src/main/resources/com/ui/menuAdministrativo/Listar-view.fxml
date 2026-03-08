@@ -18,18 +18,18 @@
             </Label>
          </children>
       </StackPane>
-      <TableView fx:id="tblFuncionarios" layoutX="6.0" layoutY="91.0" prefHeight="531.0" prefWidth="925.0">
+      <TableView fx:id="tblFuncionarios" layoutX="7.0" layoutY="90.0" prefHeight="531.0" prefWidth="925.0">
         <columns>
-          <TableColumn fx:id="clmNome" prefWidth="137.0" text="Nome" />
-          <TableColumn fx:id="clmCPF" minWidth="9.0" prefWidth="82.0" text="CPF" />
-            <TableColumn fx:id="clmCargo" minWidth="6.0" prefWidth="73.0" text="Cargo" />
-            <TableColumn fx:id="clmLogradouro" prefWidth="98.0" text="Logradouro" />
-            <TableColumn fx:id="clmMunicipio" minWidth="1.0" prefWidth="90.0" text="Municipio" />
-            <TableColumn fx:id="clmEstado" minWidth="4.0" prefWidth="83.0" text="Estado" />
-            <TableColumn fx:id="clmData" minWidth="-1.0" prefWidth="119.0" text="Data Nascimento" />
-            <TableColumn fx:id="clmCRM" minWidth="-1.0" prefWidth="68.0" text="CRM" />
-            <TableColumn fx:id="clmEspecialidade" minWidth="-1.0" prefWidth="104.0" text="Especialidade" />
-            <TableColumn fx:id="clmCOREN" minWidth="-1.0" prefWidth="70.0" text="COREN" />
+          <TableColumn fx:id="clmNome" prefWidth="250.0" text="Nome" />
+          <TableColumn fx:id="clmCPF" minWidth="9.0" prefWidth="160.0" text="CPF" />
+            <TableColumn fx:id="clmCargo" minWidth="0.0" prefWidth="200.0" text="Cargo" />
+            <TableColumn fx:id="clmLogradouro" prefWidth="250.0" text="Logradouro" />
+            <TableColumn fx:id="clmMunicipio" minWidth="1.0" prefWidth="200.0" text="Municipio" />
+            <TableColumn fx:id="clmEstado" minWidth="4.0" prefWidth="200.0" text="Estado" />
+            <TableColumn fx:id="clmData" minWidth="-1.0" prefWidth="150.0" text="Data Nascimento" />
+            <TableColumn fx:id="clmCRM" minWidth="-1.0" prefWidth="150.0" text="CRM" />
+            <TableColumn fx:id="clmEspecialidade" minWidth="-1.0" prefWidth="200.0" text="Especialidade" />
+            <TableColumn fx:id="clmCOREN" minWidth="-1.0" prefWidth="150.0" text="COREN" />
         </columns>
       </TableView>
    </children>

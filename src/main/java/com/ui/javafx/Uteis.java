@@ -1,6 +1,9 @@
 package com.ui.javafx;
 
 import com.negocio.Excessoes.MedSystemException;
+import com.negocio.basicas.Enfermeiro;
+import com.negocio.basicas.Funcionario;
+import com.negocio.basicas.Medico;
 import javafx.scene.control.Alert;
 
 public class Uteis {
@@ -15,6 +18,35 @@ public class Uteis {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("Sucesso!");
         alerta.setHeaderText(mensagem);
+        alerta.showAndWait();
+    }
+    public static void alertaPerfilFuncionario(Funcionario f) {
+
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Busca Concluída");
+        alerta.setHeaderText("Funcionário Encontrado!");
+
+        String textoPerfil =
+                "Nome: " + f.getNome() + "\n" +
+                        "CPF: " + f.getcPF() + "\n" +
+                        "Cargo: " + f.getClass().getSimpleName() + "\n" +
+                        "Data de Nasc.: " + f.getDataNascimento().toString() + "\n" +
+                        "Municipio: " + f.getEndereco().getMunicipio() + "\n" +
+                        "Logradouro: " + f.getEndereco().getLogradouro() + "\n" +
+                        "Estado: " + f.getEndereco().getEstado();
+
+
+        if (f instanceof Medico) {
+            Medico m = (Medico) f;
+            textoPerfil += "\nCRM: " + m.getCrm();
+            textoPerfil += "\nEspecialidade: " + m.getEspecialidade().toString();
+
+        } else if (f instanceof Enfermeiro) {
+            Enfermeiro enf = (Enfermeiro) f;
+            textoPerfil += "\nCOREN: " + enf.getCorem();
+        }
+
+        alerta.setContentText(textoPerfil);
         alerta.showAndWait();
     }
 }
