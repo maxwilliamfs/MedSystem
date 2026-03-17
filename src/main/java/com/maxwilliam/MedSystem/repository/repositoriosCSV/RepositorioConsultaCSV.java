@@ -1,27 +1,22 @@
-package com.maxwilliam.MedSystem.repository.repositoriosCSV;
+package com.dados.repositoriosCSV;
 
 
 //Bibliotecas
-import com.maxwilliam.MedSystem.repository.interfaces.IRepositorioConsulta;
-import com.maxwilliam.MedSystem.model.ConsultaAbstrata;
-import com.maxwilliam.MedSystem.model.enuns.StatusConsulta;
-import com.maxwilliam.MedSystem.model.secundarias.PrescricaoMedica;
-import com.maxwilliam.MedSystem.model.secundarias.Procedimento;
-import com.maxwilliam.MedSystem.exception.BugFoundException;
-import com.maxwilliam.MedSystem.exception.ErroNoDiscoException;
-import com.maxwilliam.MedSystem.exception.InformacaoNaoEncontradaException;
-import com.maxwilliam.MedSystem.exception.MedSystemException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
+import com.dados.interfaces.IRepositorioConsulta;
+import com.negocio.Excessoes.ErroNoDiscoException;
+import com.negocio.basicas.*;
+import com.negocio.basicas.enuns.GravidadeConsulta;
+import com.negocio.basicas.enuns.StatusConsulta;
+import com.negocio.basicas.secundarias.*;
+import com.negocio.Excessoes.InformacaoNaoEncontradaException;
+import com.negocio.Excessoes.MedSystemException;
+
+import java.io.*;
 import java.util.ArrayList;
 
 public class RepositorioConsultaCSV implements IRepositorioConsulta{
     //Atributos
-    private String nomeArquivo = "Arquivos/Consultas.bin";
+    private String nomeArquivo = "Arquivos/Consultas.CSV";
 
     //Metodos CRUD
     public void adicionar(ConsultaAbstrata consulta) throws MedSystemException{
@@ -74,31 +69,86 @@ public class RepositorioConsultaCSV implements IRepositorioConsulta{
         throw new InformacaoNaoEncontradaException("Nao existe consulta cadastrado com tal ID!!!");
     }
     private ArrayList<ConsultaAbstrata> lerDados() throws MedSystemException{
-        
-        ArrayList<ConsultaAbstrata> consultas;
-        File arq = new File(nomeArquivo);
-        
-        if(arq.exists()){
-            try(FileInputStream stream = new FileInputStream(arq);
-            ObjectInputStream obj = new ObjectInputStream(stream)){
-                consultas = (ArrayList<ConsultaAbstrata>)obj.readObject();
-            } catch (IOException Ex){ 
-                throw new ErroNoDiscoException("Falha ao ler dados do disco", Ex);
-            } catch (ClassNotFoundException Ex){
-                throw new BugFoundException("Bug encontrado, contate o desenvolvedor", Ex);
+        ArrayList<ConsultaAbstrata> consultas = new ArrayList<>();
+        try (BufferedReader buffer = new BufferedReader(new FileReader(nomeArquivo))) {
+            String linhaAtual;
+            while((linhaAtual = buffer.readLine()) != null){
+
+                String[] dados = linhaAtual.split(",");
+
+                int id = Integer.parseInt(dados[0]);
+
+                RepositorioFuncionarioCSV repoFunc = new RepositorioFuncionarioCSV();
+                RepositorioPacienteCSV repoPaci = new RepositorioPacienteCSV();
+                Medico m = (Medico) repoFunc.buscar(dados[1]);
+                Paciente p = (Paciente) repoPaci.buscar(dados[2]);
+
+                String[] data = dados[3].split("/");
+                int d = Integer.parseInt(data[0]), me = Integer.parseInt(data[1]), a = Integer.parseInt(data[2]);
+                Data novaData = new Data(d,me,a);
+
+                GravidadeConsulta novaGrav = GravidadeConsulta.valueOf(dados[4]);
+                StatusConsulta statusNovo = StatusConsulta.valueOf(dados[5]);
+
+                String[] inicio = dados[6].split(":");
+                int iniH = Integer.parseInt(inicio[0]), iniM = Integer.parseInt(inicio[1]);
+                Horario novoInicio = new Horario(iniH,iniM);
+                String[] fim = dados[7].split(":");
+                int fimH = Integer.parseInt(fim[0]), fimM = Integer.parseInt(fim[1]);
+                Horario novoFim = new Horario(fimH,fimM);
+
+                String novosSintomas = dados[8].replace("-",",");
+                String novaObse = dados[9].replace("-",",");
+                String medicamentos[] = dados[10].split("/");
+                ArrayList<Medicamento> novosMedicamentos = new ArrayList<>();
+                if(!medicamentos[0].equals("NADA")) {
+                    for (int i = 0; i < medicamentos.length; i++) {
+                        String[] info = medicamentos[i].split("\\|");
+                        String nome = info[0], freq = info[1], dose = info[2];
+                        Medicamento med = new Medicamento(nome, freq, dose);
+                        novosMedicamentos.add(med);
+                    }
+                }
+                PrescricaoMedica novaPres = new PrescricaoMedica(novaObse,novosMedicamentos);
+
+                String procedimentos[] = dados[11].split("/");
+                ArrayList<Procedimento> novosProce = new ArrayList<>();
+                if(!procedimentos[0].equals("NADA")){
+                    for(int i = 0; i < procedimentos.length ; i++){
+                        String[] info = procedimentos[i].split("\\|");
+                        String nome = info[0], preco = info[1];
+                        double precoo = Double.parseDouble(preco);
+                        Procedimento pro = new Procedimento(nome,precoo);
+                        novosProce.add(pro);
+                    }
+                }
+
+                String tipo = dados[12];
+                if(tipo.equals("Particular")){
+                    ConsultaParticular c = new ConsultaParticular(id,m,p,novaData,novoInicio,novoFim,novosSintomas,novaGrav,novaPres,novosProce,statusNovo);
+                    consultas.add(c);
+                } else {
+                    ConsultaPublica c = new ConsultaPublica(id,m,p,novaData,novoInicio,novoFim,novosSintomas,novaGrav,novaPres,novosProce,statusNovo);
+                    consultas.add(c);
+                }
             }
-        } else {
-            consultas = new ArrayList<>();
+            return consultas;
+        } catch (FileNotFoundException Ex) {
+            return consultas;
+        } catch (IOException Ex) {
+            throw new ErroNoDiscoException("Falha ao ler no disco", Ex);
         }
-        return consultas;
+
     }
     private void salvarDados(ArrayList<ConsultaAbstrata> consultas) throws MedSystemException{
-        File arq = new File(nomeArquivo);
-        try(FileOutputStream stream = new FileOutputStream(arq);
-        ObjectOutputStream obj = new ObjectOutputStream(stream)){
-            obj.writeObject(consultas);
+        new File(nomeArquivo).getParentFile().mkdirs();
+        try (FileWriter file = new FileWriter(nomeArquivo);
+        PrintWriter writer = new PrintWriter(file)) {
+            for(ConsultaAbstrata c : consultas){
+                writer.println(c.toCSV());
+            }
         } catch (IOException Ex) {
-            throw new ErroNoDiscoException("Falha ao ler dados do disco", Ex);
+            throw new ErroNoDiscoException("Falha ao salvar no disco",Ex);
         }
     }
 }
