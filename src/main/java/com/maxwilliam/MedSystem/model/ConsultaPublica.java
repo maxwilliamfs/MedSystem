@@ -1,7 +1,7 @@
 package com.maxwilliam.MedSystem.model;
 
-import com.negocio.basicas.secundarias.Horario;
-import com.negocio.basicas.secundarias.Data;
+import com.maxwilliam.MedSystem.model.secundarias.Horario;
+import com.maxwilliam.MedSystem.model.secundarias.Data;
 
 public class ConsultaPublica extends ConsultaAbstrata{
     //Construtor

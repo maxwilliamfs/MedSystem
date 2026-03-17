@@ -3,13 +3,13 @@ package com.maxwilliam.MedSystem.model;
 ///Bibliotecas
 import java.io.Serializable;
 import java.util.ArrayList;
-import com.negocio.basicas.secundarias.Data;
-import com.negocio.basicas.secundarias.Horario;
-import com.negocio.basicas.secundarias.Medicamento;
-import com.negocio.basicas.secundarias.PrescricaoMedica;
-import com.negocio.basicas.secundarias.Procedimento;
-import com.negocio.basicas.enuns.GravidadeConsulta;
-import com.negocio.basicas.enuns.StatusConsulta;
+import com.maxwilliam.MedSystem.model.secundarias.Data;
+import com.maxwilliam.MedSystem.model.secundarias.Horario;
+import com.maxwilliam.MedSystem.model.secundarias.Medicamento;
+import com.maxwilliam.MedSystem.model.secundarias.PrescricaoMedica;
+import com.maxwilliam.MedSystem.model.secundarias.Procedimento;
+import com.maxwilliam.MedSystem.model.enuns.GravidadeConsulta;
+import com.maxwilliam.MedSystem.model.enuns.StatusConsulta;
 
 public abstract class ConsultaAbstrata implements Serializable {
     private Medico medico;

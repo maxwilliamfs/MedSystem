@@ -2,16 +2,16 @@ package com.maxwilliam.MedSystem.service;
 
 //Bibliotecas
 import java.util.ArrayList;
-import com.dados.interfaces.IRepositorioConsulta;
-import com.negocio.excessoes.InformacaoInvalidaException;
-import com.negocio.excessoes.MedSystemException;
-import com.dados.repositoriosSerialize.RepositorioConsultaSerialize;
-import com.negocio.basicas.ConsultaAbstrata;
-import com.negocio.basicas.enuns.GravidadeConsulta;
-import com.negocio.basicas.enuns.StatusConsulta;
-import com.negocio.basicas.secundarias.PrescricaoMedica;
-import com.negocio.basicas.secundarias.Procedimento;
-import com.negocio.basicas.secundarias.Data;
+import com.maxwilliam.MedSystem.repository.interfaces.IRepositorioConsulta;
+import com.maxwilliam.MedSystem.exception.InformacaoInvalidaException;
+import com.maxwilliam.MedSystem.exception.MedSystemException;
+import com.maxwilliam.MedSystem.repository.repositoriosSerialize.RepositorioConsultaSerialize;
+import com.maxwilliam.MedSystem.model.ConsultaAbstrata;
+import com.maxwilliam.MedSystem.model.enuns.GravidadeConsulta;
+import com.maxwilliam.MedSystem.model.enuns.StatusConsulta;
+import com.maxwilliam.MedSystem.model.secundarias.PrescricaoMedica;
+import com.maxwilliam.MedSystem.model.secundarias.Procedimento;
+import com.maxwilliam.MedSystem.model.secundarias.Data;
 
 public class ControladorConsulta {
     //Atributos

@@ -1,7 +1,7 @@
 package com.maxwilliam.MedSystem.model;
 
-import com.negocio.basicas.secundarias.Data;
-import com.negocio.basicas.secundarias.Endereco;
+import com.maxwilliam.MedSystem.model.secundarias.Data;
+import com.maxwilliam.MedSystem.model.secundarias.Endereco;
 import java.io.Serializable;
 
 public class Pessoa implements Serializable {

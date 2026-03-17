@@ -2,8 +2,8 @@ package com.maxwilliam.MedSystem.repository.interfaces;
 
 //Bibliotecas
 import java.util.ArrayList;
-import com.negocio.basicas.Funcionario;
-import com.negocio.excessoes.MedSystemException;
+import com.maxwilliam.MedSystem.model.Funcionario;
+import com.maxwilliam.MedSystem.exception.MedSystemException;
 
 public interface IRepositorioFuncionario {
     public void adicionar(Funcionario funcionario) throws MedSystemException;

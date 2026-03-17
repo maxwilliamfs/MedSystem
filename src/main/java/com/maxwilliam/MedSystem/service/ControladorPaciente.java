@@ -1,8 +1,8 @@
 package com.maxwilliam.MedSystem.service;
 
-import com.dados.interfaces.IRepositorioPaciente;
-import com.dados.repositoriosSerialize.RepositorioPacienteSerialize;
-import com.negocio.basicas.Paciente;
+import com.maxwilliam.MedSystem.repository.interfaces.IRepositorioPaciente;
+import com.maxwilliam.MedSystem.repository.repositoriosSerialize.RepositorioPacienteSerialize;
+import com.maxwilliam.MedSystem.model.Paciente;
 import com.negocio.excessoes.InformacaoInvalidaException;
 import com.negocio.excessoes.InformacaoNaoEncontradaException;
 import com.negocio.excessoes.MedSystemException;

@@ -2,8 +2,8 @@ package com.maxwilliam.MedSystem.repository.interfaces;
 
 //Bibliotecas
 import java.util.ArrayList;
-import com.negocio.basicas.ConsultaAbstrata;
-import com.negocio.excessoes.MedSystemException;
+import com.maxwilliam.MedSystem.model.ConsultaAbstrata;
+import com.maxwilliam.MedSystem.exception.MedSystemException;
 
 public interface IRepositorioConsulta {
     //CRUD

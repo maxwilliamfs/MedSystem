@@ -1,7 +1,7 @@
 package com.maxwilliam.MedSystem.model;
 
 //Bibliotecas
-import com.negocio.basicas.enuns.Especialidade;
+import com.maxwilliam.MedSystem.model.enuns.Especialidade;
 
 public class Medico extends Funcionario {
     private String crm;

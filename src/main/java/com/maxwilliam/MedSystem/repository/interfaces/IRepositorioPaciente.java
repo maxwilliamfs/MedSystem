@@ -1,8 +1,8 @@
 package com.maxwilliam.MedSystem.repository.interfaces;
 
 import java.util.ArrayList;
-import com.negocio.basicas.Paciente;
-import com.negocio.excessoes.MedSystemException;
+import com.maxwilliam.MedSystem.model.Paciente;
+import com.maxwilliam.MedSystem.exception.MedSystemException;
 
 public interface IRepositorioPaciente {
     public void adicionar(Paciente paciente) throws MedSystemException;
