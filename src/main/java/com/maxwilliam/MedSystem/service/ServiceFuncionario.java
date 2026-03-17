@@ -7,9 +7,11 @@ import com.maxwilliam.MedSystem.repository.repositoriosSerialize.RepositorioFunc
 import com.maxwilliam.MedSystem.model.Funcionario;
 import com.maxwilliam.MedSystem.exception.InformacaoInvalidaException;
 import com.maxwilliam.MedSystem.exception.InformacaoNaoEncontradaException;
-import com.maxwilliam.MedSystem.exception.MedSystemException;;
+import com.maxwilliam.MedSystem.exception.MedSystemException;
+import org.springframework.stereotype.Service;;
 
-public class ControladorFuncionario {
+@Service
+public class ServiceFuncionario {
     //Atributos
     private IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioSerialize();
 

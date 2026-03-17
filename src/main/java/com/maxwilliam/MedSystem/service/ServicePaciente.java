@@ -3,12 +3,14 @@ package com.maxwilliam.MedSystem.service;
 import com.maxwilliam.MedSystem.repository.interfaces.IRepositorioPaciente;
 import com.maxwilliam.MedSystem.repository.repositoriosSerialize.RepositorioPacienteSerialize;
 import com.maxwilliam.MedSystem.model.Paciente;
-import com.negocio.excessoes.InformacaoInvalidaException;
-import com.negocio.excessoes.InformacaoNaoEncontradaException;
-import com.negocio.excessoes.MedSystemException;
+import com.maxwilliam.MedSystem.exception.InformacaoInvalidaException;
+import com.maxwilliam.MedSystem.exception.InformacaoNaoEncontradaException;
+import com.maxwilliam.MedSystem.exception.MedSystemException;
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
-public class ControladorPaciente {
+@Service
+public class ServicePaciente {
     //Atributos
     private IRepositorioPaciente repositorioPaciente =  new RepositorioPacienteSerialize();
 

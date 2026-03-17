@@ -12,8 +12,10 @@ import com.maxwilliam.MedSystem.model.enuns.StatusConsulta;
 import com.maxwilliam.MedSystem.model.secundarias.PrescricaoMedica;
 import com.maxwilliam.MedSystem.model.secundarias.Procedimento;
 import com.maxwilliam.MedSystem.model.secundarias.Data;
+import org.springframework.stereotype.Service;
 
-public class ControladorConsulta {
+@Service
+public class ServiceConsulta {
     //Atributos
     private IRepositorioConsulta repositorioConsulta = new RepositorioConsultaSerialize();
 

@@ -2,15 +2,15 @@ package com.maxwilliam.MedSystem.repository.repositoriosSerialize;
 
 
 //Bibliotecas
-import com.dados.interfaces.IRepositorioConsulta;
-import com.negocio.basicas.ConsultaAbstrata;
-import com.negocio.basicas.enuns.StatusConsulta;
-import com.negocio.basicas.secundarias.PrescricaoMedica;
-import com.negocio.basicas.secundarias.Procedimento;
-import com.negocio.excessoes.BugFoundException;
-import com.negocio.excessoes.ErroNoDiscoException;
-import com.negocio.excessoes.InformacaoNaoEncontradaException;
-import com.negocio.excessoes.MedSystemException;
+import com.maxwilliam.MedSystem.repository.interfaces.IRepositorioConsulta;
+import com.maxwilliam.MedSystem.model.ConsultaAbstrata;
+import com.maxwilliam.MedSystem.model.enuns.StatusConsulta;
+import com.maxwilliam.MedSystem.model.secundarias.PrescricaoMedica;
+import com.maxwilliam.MedSystem.model.secundarias.Procedimento;
+import com.maxwilliam.MedSystem.exception.BugFoundException;
+import com.maxwilliam.MedSystem.exception.ErroNoDiscoException;
+import com.maxwilliam.MedSystem.exception.InformacaoNaoEncontradaException;
+import com.maxwilliam.MedSystem.exception.MedSystemException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

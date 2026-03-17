@@ -1,15 +1,15 @@
-package com.dados.repositoriosCSV;
+/*package com.maxwilliam.MedSystem.repository.repositoriosCSV;
 
 
 //Bibliotecas
-import com.dados.interfaces.IRepositorioConsulta;
-import com.negocio.Excessoes.ErroNoDiscoException;
-import com.negocio.basicas.*;
-import com.negocio.basicas.enuns.GravidadeConsulta;
-import com.negocio.basicas.enuns.StatusConsulta;
-import com.negocio.basicas.secundarias.*;
-import com.negocio.Excessoes.InformacaoNaoEncontradaException;
-import com.negocio.Excessoes.MedSystemException;
+import com.maxwilliam.MedSystem.model.*;
+import com.maxwilliam.MedSystem.repository.interfaces.IRepositorioConsulta;
+import com.maxwilliam.MedSystem.exception.ErroNoDiscoException;
+import com.maxwilliam.MedSystem.model.enuns.GravidadeConsulta;
+import com.maxwilliam.MedSystem.model.enuns.StatusConsulta;
+import com.maxwilliam.MedSystem.model.secundarias.*;
+import com.maxwilliam.MedSystem.exception.InformacaoNaoEncontradaException;
+import com.maxwilliam.MedSystem.exception.MedSystemException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -152,3 +152,4 @@ public class RepositorioConsultaCSV implements IRepositorioConsulta{
         }
     }
 }
+ */
