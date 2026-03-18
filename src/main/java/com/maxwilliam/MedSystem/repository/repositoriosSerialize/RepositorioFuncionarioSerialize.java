@@ -54,7 +54,7 @@ public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
                 return adm;
         }
         for(int i = 0; i < funcionarios.size(); i++){
-            if(funcionarios.get(i).getcPF().equals(login) && funcionarios.get(i).getSenha().equals(senha)){
+            if(funcionarios.get(i).getCPF().equals(login) && funcionarios.get(i).getSenha().equals(senha)){
                 return funcionarios.get(i);
             }
         }
@@ -64,7 +64,7 @@ public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
     //Metodos Privados
     private int buscarCPF(String CPF, ArrayList<Funcionario> funcionarios) throws MedSystemException {
         for(int i = 0; i < funcionarios.size();i++){
-            if(funcionarios.get(i).getcPF().equals(CPF)){
+            if(funcionarios.get(i).getCPF().equals(CPF)){
                 return i;
             }
         }

@@ -18,7 +18,7 @@ public class ServicePaciente {
     public void adicionar(Paciente paciente) throws MedSystemException{
         verificarPaciente(paciente);
         try{
-            repositorioPaciente.buscar(paciente.getcPF());
+            repositorioPaciente.buscar(paciente.getCPF());
             throw new InformacaoInvalidaException("CPF ja existente no sistema!");
         } catch (InformacaoNaoEncontradaException Ex){
             repositorioPaciente.adicionar(paciente);
@@ -46,10 +46,10 @@ public class ServicePaciente {
 
     //Metodos Privados
     private void verificarPaciente(Paciente paciente) throws MedSystemException {
-        if(paciente == null || paciente.getNome().trim().isBlank() || paciente.getcPF().trim().isBlank() || !paciente.getDataNascimento().isDataValida()){
+        if(paciente == null || paciente.getNome().trim().isBlank() || paciente.getCPF().trim().isBlank() || !paciente.getDataNascimento().isDataValida()){
             throw new InformacaoInvalidaException("Informacao Invalida");
         } 
-        verificarCPF(paciente.getcPF());
+        verificarCPF(paciente.getCPF());
     }
     private void verificarCPF(String CPF) throws MedSystemException{
         if(!CPF.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")){

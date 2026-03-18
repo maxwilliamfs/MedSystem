@@ -6,7 +6,13 @@ import java.time.LocalDate;
 public class Data implements Serializable{
     //Atributos
     private int dia,mes,ano;
-
+    //Construtor
+    public Data (int dia, int mes, int ano){
+        this.setAno(ano);
+        this.setDia(dia);
+        this.setMes(mes);
+    }
+    public Data(){}
     //toString
     public String toString(){
         return this.getDia() + "/" + this.getMes() + "/" + this.getAno();

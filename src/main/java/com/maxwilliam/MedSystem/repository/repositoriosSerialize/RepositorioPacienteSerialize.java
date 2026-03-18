@@ -49,7 +49,7 @@ public class RepositorioPacienteSerialize implements IRepositorioPaciente{
     //Metodos Privados
     private int buscarCPF(String CPF, ArrayList<Paciente> pacientes) throws MedSystemException {
         for(int i = 0; i < pacientes.size();i++){
-            if(pacientes.get(i).getcPF().equals(CPF)){
+            if(pacientes.get(i).getCPF().equals(CPF)){
                 return i;
             }
         }

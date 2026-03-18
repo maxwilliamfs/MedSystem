@@ -12,6 +12,16 @@ public class Endereco implements Serializable{
         return "Logradouro: " + this.getLogradouro() + ",\nMunicipio: " + this.getMunicipio() + ",\nEstado: " + this.getEstado() + ",\nNumero: " + this.getNumero() + ",\nCEP:" + this.getCep();
     }
 
+    //Contrutor
+    public Endereco(String logradouro, String Municipio, String Estado, String cep,
+    String numero){
+        this.setCep(cep);
+        this.setEstado(estado);
+        this.setLogradouro(logradouro);
+        this.setMunicipio(municipio);
+        this.setNumero(numero);
+    }
+
     //Getters e Stters
     public String getLogradouro() {
         return logradouro;

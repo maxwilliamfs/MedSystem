@@ -16,7 +16,7 @@ public class Funcionario extends Pessoa {
     //Constutor
     public Funcionario(String nome, String cPF, Endereco endereco, Data dataNascimento, String senha) {
         this.setNome(nome); 
-        this.setcPF(cPF);
+        this.setCPF(cPF);
         this.setEndereco(endereco);
         this.setDataNascimento(dataNascimento);
         this.setSenha(senha);

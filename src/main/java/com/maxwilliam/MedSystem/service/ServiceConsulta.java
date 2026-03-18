@@ -62,7 +62,7 @@ public class ServiceConsulta {
         ArrayList<ConsultaAbstrata> consultas = repositorioConsulta.listar();
         ArrayList<ConsultaAbstrata> agenda = new ArrayList<>();
         for(int i = 0; i < consultas.size(); i++){
-            if(consultas.get(i).getData().equals(dataAgenda) && consultas.get(i).getMedico().getcPF().equals(CPF)){
+            if(consultas.get(i).getData().equals(dataAgenda) && consultas.get(i).getMedico().getCPF().equals(CPF)){
                 agenda.add(consultas.get(i));
             }
         }
@@ -102,11 +102,11 @@ public class ServiceConsulta {
             int inicioExistente = (consultas.get(i).getHorarioInicio().getHora() * 60) + consultas.get(i).getHorarioInicio().getMinuto();
             int finalExistente = (consultas.get(i).getHorarioFim().getHora() * 60) + consultas.get(i).getHorarioFim().getMinuto();
 
-            if(consulta.getMedico().getcPF().equals(consultas.get(i).getMedico().getcPF()) && consulta.getData().equals(consultas.get(i).getData()) && consultas.get(i).getStatus() != StatusConsulta.CANCELADA && (inicioTotal < finalExistente) && (finalTotal > inicioExistente)){
+            if(consulta.getMedico().getCPF().equals(consultas.get(i).getMedico().getCPF()) && consulta.getData().equals(consultas.get(i).getData()) && consultas.get(i).getStatus() != StatusConsulta.CANCELADA && (inicioTotal < finalExistente) && (finalTotal > inicioExistente)){
 
                 throw new InformacaoInvalidaException("O medico informado ja tem consulta marcada para o dia e horario informado");
 
-            } else if(consulta.getPaciente().getcPF().equals(consultas.get(i).getPaciente().getcPF()) && consulta.getData().equals(consultas.get(i).getData()) && consultas.get(i).getStatus() != StatusConsulta.CANCELADA && (inicioTotal < finalExistente) && (finalTotal > inicioExistente)){
+            } else if(consulta.getPaciente().getCPF().equals(consultas.get(i).getPaciente().getCPF()) && consulta.getData().equals(consultas.get(i).getData()) && consultas.get(i).getStatus() != StatusConsulta.CANCELADA && (inicioTotal < finalExistente) && (finalTotal > inicioExistente)){
 
                 throw new InformacaoInvalidaException("O paciente informado ja tem consulta marcada para o dia e horario informado");
             }

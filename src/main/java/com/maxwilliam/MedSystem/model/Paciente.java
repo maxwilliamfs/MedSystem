@@ -1,6 +1,9 @@
 package com.maxwilliam.MedSystem.model;
 
 //Bibliotecas
+import com.maxwilliam.MedSystem.model.secundarias.Data;
+import com.maxwilliam.MedSystem.model.secundarias.Endereco;
+
 import java.util.ArrayList;
 
 public class Paciente extends Pessoa {
@@ -11,6 +14,21 @@ public class Paciente extends Pessoa {
     //Construtor
     public Paciente(Pessoa p, String nomeConvenio, String tipoSanguineo, double porcentagemDescontoConvenio, ArrayList<ConsultaAbstrata> prontuario){
         super(p);
+        this.setPorcentagemDescontoConvenio(porcentagemDescontoConvenio);
+        this.setProntuario(prontuario);
+        this.setnomeConvenio(nomeConvenio);
+        this.setTipoSanguineo(tipoSanguineo);
+    }
+    public Paciente(String nome, String cpf){
+        this.setNome(nome);
+        this.setCPF(cpf);
+    }
+    public Paciente(){}
+    public Paciente(String nome, String cPF, Endereco endereco, Data dataNascimento, String nomeConvenio, String tipoSanguineo, double porcentagemDescontoConvenio, ArrayList<ConsultaAbstrata> prontuario) {
+        this.setNome(nome);
+        this.setCPF(cPF);
+        this.setEndereco(endereco);
+        this.setDataNascimento(dataNascimento);
         this.setPorcentagemDescontoConvenio(porcentagemDescontoConvenio);
         this.setProntuario(prontuario);
         this.setnomeConvenio(nomeConvenio);

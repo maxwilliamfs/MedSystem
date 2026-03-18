@@ -47,7 +47,7 @@ public abstract class ConsultaAbstrata implements Serializable {
     //toString
     @Override
     public String toString(){
-        return "ID: " + this.getId() + ",\nNome do Medico: " + this.getMedico().getNome() + ",\nCPF do Medico: " + this.getMedico().getcPF() + ",\nNome do Paciente: " + this.getPaciente().getNome() + ",\nCPF do Paciente: " + this.getPaciente().getcPF() + ",\nData: " + this.getData() + "\nHorario inicio: " + this.getHorarioInicio() + ",\nHorario Fim: " + this.getHorarioFim() + ",\nSintomas: " + this.getSintomas() + ",\nGravidade: " + this.getGravidade() + ",\nStatus: " + this.getStatus() + ",\nObservacoes: " + this.getPrescricaoMedica().getObservacoes() + ",\n\nMedicamentos: " + printMedicamentos() + "\nProcedimentos: \n"+ printProcedimentos() + "Preco: " + printPreco() + ".\n";
+        return "ID: " + this.getId() + ",\nNome do Medico: " + this.getMedico().getNome() + ",\nCPF do Medico: " + this.getMedico().getCPF() + ",\nNome do Paciente: " + this.getPaciente().getNome() + ",\nCPF do Paciente: " + this.getPaciente().getCPF() + ",\nData: " + this.getData() + "\nHorario inicio: " + this.getHorarioInicio() + ",\nHorario Fim: " + this.getHorarioFim() + ",\nSintomas: " + this.getSintomas() + ",\nGravidade: " + this.getGravidade() + ",\nStatus: " + this.getStatus() + ",\nObservacoes: " + this.getPrescricaoMedica().getObservacoes() + ",\n\nMedicamentos: " + printMedicamentos() + "\nProcedimentos: \n"+ printProcedimentos() + "Preco: " + printPreco() + ".\n";
     }
 
     //Metodos

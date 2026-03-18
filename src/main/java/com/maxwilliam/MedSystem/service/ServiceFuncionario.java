@@ -19,7 +19,7 @@ public class ServiceFuncionario {
     public void adicionar(Funcionario funcionario) throws MedSystemException{
         verificarFuncionario(funcionario);
         try{
-            repositorioFuncionario.buscar(funcionario.getcPF());
+            repositorioFuncionario.buscar(funcionario.getCPF());
             throw new InformacaoInvalidaException("CPF ja existente no sistema!");
         } catch (InformacaoNaoEncontradaException Ex){
             repositorioFuncionario.adicionar(funcionario);
