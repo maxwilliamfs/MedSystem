@@ -1,5 +1,6 @@
 package com.maxwilliam.MedSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.maxwilliam.MedSystem.model.secundarias.Horario;
 import com.maxwilliam.MedSystem.model.secundarias.Data;
 
@@ -8,6 +9,10 @@ public class ConsultaParticular extends ConsultaAbstrata {
     //Construtor
     public ConsultaParticular(Medico medico, Paciente paciente, Data data, Horario horarioInicio, Horario horarioFim, String sintomas) {
         super(medico, paciente, data, horarioInicio, horarioFim, sintomas);
+    }
+    @JsonCreator
+    public ConsultaParticular(){
+
     }
     
     //Metodos
