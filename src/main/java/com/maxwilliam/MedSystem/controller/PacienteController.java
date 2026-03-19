@@ -3,6 +3,7 @@ import com.maxwilliam.MedSystem.exception.MedSystemException;
 import com.maxwilliam.MedSystem.model.secundarias.Data;
 import com.maxwilliam.MedSystem.model.secundarias.Endereco;
 import com.maxwilliam.MedSystem.service.ServicePaciente;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import com.maxwilliam.MedSystem.model.Paciente;
@@ -12,7 +13,8 @@ import com.maxwilliam.MedSystem.model.Paciente;
 public class PacienteController {
 
     //Instancias
-    ServicePaciente servicePaciente = new ServicePaciente();
+    @Autowired
+    ServicePaciente servicePaciente;
 
     //Metodos
     @GetMapping

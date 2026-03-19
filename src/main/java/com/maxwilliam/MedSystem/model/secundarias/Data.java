@@ -1,5 +1,7 @@
 //Bibliotecas
 package com.maxwilliam.MedSystem.model.secundarias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -32,6 +34,7 @@ public class Data implements Serializable{
     }
 
     //Metodos
+    @JsonIgnore
     public boolean isDataValida(){
         try {
             LocalDate dataDigitada = LocalDate.of(this.getAno(), this.getMes(), this.getDia());
@@ -40,16 +43,19 @@ public class Data implements Serializable{
             return false;
         }
     }
+    @JsonIgnore
     public boolean isDataPassada() {
         LocalDate dataDigitada = LocalDate.of(this.getAno(), this.getMes(), this.getDia());
         LocalDate hoje = LocalDate.now();
         return dataDigitada.isBefore(hoje);
     }
+    @JsonIgnore
     public boolean isDataFutura() {
         LocalDate dataDigitada = LocalDate.of(this.getAno(), this.getMes(), this.getDia());
         LocalDate hoje = LocalDate.now();
         return dataDigitada.isAfter(hoje);
     }
+    @JsonIgnore
     public static Data getDataHoje(){
         Data hoje = new Data();
         LocalDate sistema = LocalDate.now();

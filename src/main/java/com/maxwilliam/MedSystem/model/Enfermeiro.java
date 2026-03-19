@@ -1,5 +1,7 @@
 package com.maxwilliam.MedSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public class Enfermeiro extends Funcionario {
     private String corem;
 
@@ -8,6 +10,8 @@ public class Enfermeiro extends Funcionario {
         super(f);
         this.setCorem(corem);
     }
+    @JsonCreator
+    public Enfermeiro(){}
 
     //toString
     @Override

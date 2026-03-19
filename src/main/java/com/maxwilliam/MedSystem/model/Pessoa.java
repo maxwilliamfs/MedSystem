@@ -1,12 +1,16 @@
 package com.maxwilliam.MedSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.maxwilliam.MedSystem.model.secundarias.Data;
 import com.maxwilliam.MedSystem.model.secundarias.Endereco;
 import java.io.Serializable;
 
 public class Pessoa implements Serializable {
     //Atributos
-    private String nome,cpf;
+    private String nome;
+    @JsonProperty("cpf")
+    private String cpf;
     private Endereco endereco;
     private Data dataNascimento;
 
@@ -35,6 +39,7 @@ public class Pessoa implements Serializable {
         this.setEndereco(p.getEndereco());
         this.setDataNascimento(p.getDataNascimento());
     }
+    @JsonCreator
     public Pessoa(){}
 
     //Getters e Setters
@@ -44,6 +49,7 @@ public class Pessoa implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    @JsonProperty("cpf")
     public String getCPF() {
         return cpf;
     }

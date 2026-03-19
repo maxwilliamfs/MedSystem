@@ -66,6 +66,7 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
 
     //Metodos Privados
     public int buscarID(int id, ArrayList<ConsultaAbstrata> consultas) throws MedSystemException {
+        new java.io.File("Arquivos").mkdir();
         for(int i = 0; i < consultas.size();i++){
             if(consultas.get(i).getId() == id){
                 return i;
@@ -74,7 +75,7 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
         throw new InformacaoNaoEncontradaException("Nao existe consulta cadastrado com tal ID!!!");
     }
     private ArrayList<ConsultaAbstrata> lerDados() throws MedSystemException{
-        
+        new java.io.File("Arquivos").mkdir();
         ArrayList<ConsultaAbstrata> consultas;
         File arq = new File(nomeArquivo);
         
@@ -93,6 +94,7 @@ public class RepositorioConsultaSerialize implements IRepositorioConsulta{
         return consultas;
     }
     private void salvarDados(ArrayList<ConsultaAbstrata> consultas) throws MedSystemException{
+        new java.io.File("Arquivos").mkdir();
         File arq = new File(nomeArquivo);
         try(FileOutputStream stream = new FileOutputStream(arq);
         ObjectOutputStream obj = new ObjectOutputStream(stream)){

@@ -48,6 +48,7 @@ public class RepositorioPacienteSerialize implements IRepositorioPaciente{
 
     //Metodos Privados
     private int buscarCPF(String CPF, ArrayList<Paciente> pacientes) throws MedSystemException {
+        new java.io.File("Arquivos").mkdir();
         for(int i = 0; i < pacientes.size();i++){
             if(pacientes.get(i).getCPF().equals(CPF)){
                 return i;
@@ -56,7 +57,7 @@ public class RepositorioPacienteSerialize implements IRepositorioPaciente{
         throw new InformacaoNaoEncontradaException("Nao existe paciente cadastrado com tal CPF!!!");
     }
     private ArrayList<Paciente> lerDados() throws MedSystemException{
-        
+        new java.io.File("Arquivos").mkdir();
         ArrayList<Paciente> pacientes;
         File arq = new File(nomeArquivo);
         
@@ -75,6 +76,7 @@ public class RepositorioPacienteSerialize implements IRepositorioPaciente{
         return pacientes;
     }
     private void salvarDados(ArrayList<Paciente> pacientes) throws MedSystemException{
+        new java.io.File("Arquivos").mkdir();
         File arq = new File(nomeArquivo);
         try(FileOutputStream stream = new FileOutputStream(arq);
         ObjectOutputStream obj = new ObjectOutputStream(stream)){

@@ -3,6 +3,8 @@ package com.maxwilliam.MedSystem.model;
 ///Bibliotecas
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.maxwilliam.MedSystem.model.secundarias.Data;
 import com.maxwilliam.MedSystem.model.secundarias.Horario;
 import com.maxwilliam.MedSystem.model.secundarias.Medicamento;
@@ -43,6 +45,8 @@ public abstract class ConsultaAbstrata implements Serializable {
         ArrayList<Procedimento> procedimentos = new ArrayList<>();
         this.setProcedimentos(procedimentos);
     }
+    @JsonCreator
+    public ConsultaAbstrata(){}
 
     //toString
     @Override

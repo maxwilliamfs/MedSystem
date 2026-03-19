@@ -63,6 +63,7 @@ public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
 
     //Metodos Privados
     private int buscarCPF(String CPF, ArrayList<Funcionario> funcionarios) throws MedSystemException {
+        new java.io.File("Arquivos").mkdir();
         for(int i = 0; i < funcionarios.size();i++){
             if(funcionarios.get(i).getCPF().equals(CPF)){
                 return i;
@@ -71,7 +72,7 @@ public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
         throw new InformacaoNaoEncontradaException("Nao existe Funcionario cadastrado com tal CPF!!!");
     }
     private ArrayList<Funcionario> lerDados() throws MedSystemException{
-        
+        new java.io.File("Arquivos").mkdir();
         ArrayList<Funcionario> funcionarios;
         File arq = new File(nomeArquivo);
         
@@ -90,6 +91,7 @@ public class RepositorioFuncionarioSerialize implements IRepositorioFuncionario{
         return funcionarios;
     }
     private void salvarDados(ArrayList<Funcionario> funcionarios) throws MedSystemException{
+        new java.io.File("Arquivos").mkdir();
         File arq = new File(nomeArquivo);
         try(FileOutputStream stream = new FileOutputStream(arq);
         ObjectOutputStream obj = new ObjectOutputStream(stream)){

@@ -1,6 +1,7 @@
 package com.maxwilliam.MedSystem.model;
 
 //Bibliotecas
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.maxwilliam.MedSystem.model.enuns.Especialidade;
 
 public class Medico extends Funcionario {
@@ -13,6 +14,8 @@ public class Medico extends Funcionario {
         this.setCrm(crm);
         this.setEspecialidade(especialidade);
     }
+    @JsonCreator
+    public Medico(){}
 
     //ToString
     @Override

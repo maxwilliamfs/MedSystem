@@ -1,5 +1,6 @@
 package com.maxwilliam.MedSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.maxwilliam.MedSystem.model.secundarias.Data;
 import com.maxwilliam.MedSystem.model.secundarias.Endereco;
 
@@ -25,6 +26,7 @@ public class Funcionario extends Pessoa {
         super(f);
         this.setSenha(f.getSenha());
     }
+    @JsonCreator
     public Funcionario(){
         super();
     } 
