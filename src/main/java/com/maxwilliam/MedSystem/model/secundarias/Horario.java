@@ -1,6 +1,9 @@
 package com.maxwilliam.MedSystem.model.secundarias;
 
-public class Horario {
+import com.fasterxml.jackson.annotation.JsonCreator;
+import java.io.Serializable;
+
+public class Horario implements Serializable {
     //Atributos
     private int hora,minuto;
 
@@ -16,6 +19,8 @@ public class Horario {
         this.setHora(h);
         this.setMinuto(m);
     }
+    @JsonCreator
+    public Horario() {}
     //Getters e Stters
     public int getHora() {
         return hora;

@@ -2,6 +2,11 @@ package com.maxwilliam.MedSystem.service;
 
 //Bibliotecas
 import java.util.ArrayList;
+
+import com.maxwilliam.MedSystem.exception.InformacaoNaoEncontradaException;
+import com.maxwilliam.MedSystem.model.Funcionario;
+import com.maxwilliam.MedSystem.model.Medico;
+import com.maxwilliam.MedSystem.model.Paciente;
 import com.maxwilliam.MedSystem.repository.interfaces.IRepositorioConsulta;
 import com.maxwilliam.MedSystem.exception.InformacaoInvalidaException;
 import com.maxwilliam.MedSystem.exception.MedSystemException;
@@ -18,6 +23,8 @@ import org.springframework.stereotype.Service;
 public class ServiceConsulta {
     //Atributos
     private IRepositorioConsulta repositorioConsulta = new RepositorioConsultaSerialize();
+    private ServiceFuncionario serviceFuncionario = new ServiceFuncionario();
+    private ServicePaciente servicePaciente = new ServicePaciente();
 
     //CRUD
     public void adicionar(ConsultaAbstrata consulta) throws MedSystemException{
@@ -77,11 +84,23 @@ public class ServiceConsulta {
     }
 
     //Metodos Privados
-    private void verificarConsulta(ConsultaAbstrata consulta) throws MedSystemException{
+    private void verificarConsulta2(ConsultaAbstrata consulta) throws MedSystemException{
         //Informacoes Basicas
         if(consulta == null){
             throw new InformacaoInvalidaException("Informacao invalida!");
         }
+
+        //Verificando se o medico e o paciente existem
+        try{
+            serviceFuncionario.buscar(consulta.getMedico().getCPF());
+            throw new InformacaoInvalidaException("Nao ha medico cadastrado com tal CPF");
+        } catch (InformacaoNaoEncontradaException Ex) {
+            try {
+                servicePaciente.buscar(consulta.getPaciente().getCPF());
+                throw new InformacaoInvalidaException("Nao ha paciente cadastrado com tal CPF");
+            } catch (InformacaoNaoEncontradaException Exx) {}
+        }
+
 
         //Horario
         int inicioTotal = (consulta.getHorarioInicio().getHora() * 60) + consulta.getHorarioInicio().getMinuto();
@@ -99,6 +118,58 @@ public class ServiceConsulta {
         ArrayList<ConsultaAbstrata> consultas = repositorioConsulta.listar();
         for(int i = 0; i < consultas.size(); i++){
             
+            int inicioExistente = (consultas.get(i).getHorarioInicio().getHora() * 60) + consultas.get(i).getHorarioInicio().getMinuto();
+            int finalExistente = (consultas.get(i).getHorarioFim().getHora() * 60) + consultas.get(i).getHorarioFim().getMinuto();
+
+            if(consulta.getMedico().getCPF().equals(consultas.get(i).getMedico().getCPF()) &&
+            consulta.getData().equals(consultas.get(i).getData()) && consultas.get(i).getStatus()
+            != StatusConsulta.CANCELADA && (inicioTotal < finalExistente) &&
+            (finalTotal > inicioExistente) && consulta.getId() != consultas.get(i).getId()){
+
+                throw new InformacaoInvalidaException("O medico informado ja tem consulta marcada para o dia e horario informado");
+
+            } else if(consulta.getPaciente().getCPF().equals(consultas.get(i).getPaciente().getCPF())
+            && consulta.getData().equals(consultas.get(i).getData()) &&
+            consultas.get(i).getStatus() != StatusConsulta.CANCELADA &&
+            (inicioTotal < finalExistente) && (finalTotal > inicioExistente)
+            && consulta.getId() != consultas.get(i).getId()){
+                throw new InformacaoInvalidaException("O paciente informado ja tem consulta marcada para o dia e horario informado");
+            }
+        }
+    }
+    private void verificarConsulta(ConsultaAbstrata consulta) throws MedSystemException{
+        //Informacoes Basicas
+        if(consulta == null){
+            throw new InformacaoInvalidaException("Informacao invalida!");
+        }
+
+        //Verificando se o medico e o paciente existem
+        try{
+            serviceFuncionario.buscar(consulta.getMedico().getCPF());
+            throw new InformacaoInvalidaException("Nao ha medico cadastrado com tal CPF");
+        } catch (InformacaoNaoEncontradaException Ex) {
+            try {
+                servicePaciente.buscar(consulta.getPaciente().getCPF());
+                throw new InformacaoInvalidaException("Nao ha paciente cadastrado com tal CPF");
+            } catch (InformacaoNaoEncontradaException Exx) {}
+        }
+
+        //Horario
+        int inicioTotal = (consulta.getHorarioInicio().getHora() * 60) + consulta.getHorarioInicio().getMinuto();
+        int finalTotal = (consulta.getHorarioFim().getHora() * 60) + consulta.getHorarioFim().getMinuto();
+        if(inicioTotal >= finalTotal){
+            throw new InformacaoInvalidaException("Informe horarios validos!");
+        }
+
+        //Data
+        if(consulta.getData().isDataPassada() || !consulta.getData().isDataValida()){
+            throw new InformacaoInvalidaException("Informe uma data valida!");
+        }
+
+        //Verificacao de choque de horarios
+        ArrayList<ConsultaAbstrata> consultas = repositorioConsulta.listar();
+        for(int i = 0; i < consultas.size(); i++){
+
             int inicioExistente = (consultas.get(i).getHorarioInicio().getHora() * 60) + consultas.get(i).getHorarioInicio().getMinuto();
             int finalExistente = (consultas.get(i).getHorarioFim().getHora() * 60) + consultas.get(i).getHorarioFim().getMinuto();
 

@@ -4,6 +4,8 @@ package com.maxwilliam.MedSystem.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.maxwilliam.MedSystem.model.enuns.Especialidade;
 
+import java.io.Serializable;
+
 public class Medico extends Funcionario {
     private String crm;
     private Especialidade especialidade;
