@@ -1,5 +1,6 @@
 package com.maxwilliam.MedSystem.controller;
 
+<<<<<<< Updated upstream
 import com.maxwilliam.MedSystem.dto.RealizarConsultaDTO;
 import com.maxwilliam.MedSystem.exception.MedSystemException;
 import com.maxwilliam.MedSystem.model.ConsultaAbstrata;
@@ -12,10 +13,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+=======
+import com.maxwilliam.MedSystem.exception.MedSystemException;
+import com.maxwilliam.MedSystem.model.ConsultaAbstrata;
+import com.maxwilliam.MedSystem.model.Medico;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+>>>>>>> Stashed changes
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/medicos")
 public class MedicoController extends BaseFuncionarioController<Medico>{
+<<<<<<< Updated upstream
     @Autowired
     ServiceConsulta serviceConsulta;
 
@@ -32,5 +45,11 @@ public class MedicoController extends BaseFuncionarioController<Medico>{
     MedSystemException{
         serviceConsulta.realizarConsulta(dados.getId(),dados.getProcedimentos()
         ,dados.getPrescricaoMedica());
+=======
+    @GetMapping("/{cpf}/agenda")
+    public ArrayList<ConsultaAbstrata> verAgenda(@PathVariable String cpf)
+    throws MedSystemException{
+        return serviceFuncionario;
+>>>>>>> Stashed changes
     }
 }
