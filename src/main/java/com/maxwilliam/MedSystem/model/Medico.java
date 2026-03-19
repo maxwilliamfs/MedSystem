@@ -3,11 +3,15 @@ package com.maxwilliam.MedSystem.model;
 //Bibliotecas
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.maxwilliam.MedSystem.model.enuns.Especialidade;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 
 public class Medico extends Funcionario {
+    @NotBlank(message = "Informe um CRM")
     private String crm;
+    @NotNull(message = "Informe uma especialidade")
     private Especialidade especialidade;
 
     //Contrutor

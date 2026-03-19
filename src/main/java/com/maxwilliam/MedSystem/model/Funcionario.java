@@ -3,9 +3,11 @@ package com.maxwilliam.MedSystem.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.maxwilliam.MedSystem.model.secundarias.Data;
 import com.maxwilliam.MedSystem.model.secundarias.Endereco;
+import jakarta.validation.constraints.NotBlank;
 
 
 public class Funcionario extends Pessoa {
+    @NotBlank(message = "Informe uma senha")
     private String senha;
 
     //toString

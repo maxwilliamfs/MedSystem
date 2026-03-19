@@ -1,8 +1,12 @@
 package com.maxwilliam.MedSystem.model.secundarias;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class Medicamento {
     //Atributos
+    @NotBlank(message = "Informe as informacoes do medicamento corretamente")
     private String nome, frequencia;
+    @NotBlank(message = "Informe a dosagem do medicamento")
     private String dosagem;
 
     //toString

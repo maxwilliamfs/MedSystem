@@ -1,10 +1,13 @@
 package com.maxwilliam.MedSystem.model.secundarias;
 
 //Bibliotecas
+import jakarta.validation.constraints.NotBlank;
+
 import java.io.Serializable;
 
 public class Endereco implements Serializable{
     //Atributos
+    @NotBlank(message = "Informe o endereco completo")
     private String logradouro,municipio,estado,cep,numero;
 
     //toString

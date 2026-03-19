@@ -4,14 +4,26 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.maxwilliam.MedSystem.model.secundarias.Data;
 import com.maxwilliam.MedSystem.model.secundarias.Endereco;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.br.CPF;
+
 import java.io.Serializable;
 
 public class Pessoa implements Serializable {
     //Atributos
+    @NotBlank(message = "Informe um Nome")
     private String nome;
+    @NotBlank(message = "Informe um CPF")
+    @CPF(message = "CPF invalido")
     @JsonProperty("cpf")
     private String cpf;
+    @Valid
+    @NotNull(message = "Informe um Endereco")
     private Endereco endereco;
+    @Valid
+    @NotNull(message = "Informe uma data")
     private Data dataNascimento;
 
     //toString

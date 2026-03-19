@@ -1,10 +1,15 @@
 package com.maxwilliam.MedSystem.model.secundarias;
 
 //Bibliotecas
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.ArrayList;
 
 public class PrescricaoMedica {
+    @NotBlank(message = "Informe as observacoes")
     private String observacoes;
+    @NotNull(message = "Informe os medicamentos")
     private ArrayList<Medicamento> medicamentos;
 
     //Metodos

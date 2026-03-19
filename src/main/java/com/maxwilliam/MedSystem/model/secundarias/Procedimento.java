@@ -1,7 +1,10 @@
 package com.maxwilliam.MedSystem.model.secundarias;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class Procedimento {
     //Atributos
+    @NotBlank(message = "Informe o nome do procedimento")
     private String nome;
     private double preco;
 

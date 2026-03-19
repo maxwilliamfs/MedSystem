@@ -12,15 +12,27 @@ import com.maxwilliam.MedSystem.model.secundarias.PrescricaoMedica;
 import com.maxwilliam.MedSystem.model.secundarias.Procedimento;
 import com.maxwilliam.MedSystem.model.enuns.GravidadeConsulta;
 import com.maxwilliam.MedSystem.model.enuns.StatusConsulta;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public abstract class ConsultaAbstrata implements Serializable {
+    @NotNull(message = "Informe um medico")
     private Medico medico;
+    @NotNull(message = "Informe um paciente")
     private Paciente paciente;
+    @Valid
+    @NotNull(message = "Informe uma data")
     private Data data;
+    @Valid
+    @NotNull(message = "Informe um horario correto")
     private Horario horarioInicio;
+    @Valid
+    @NotNull(message = "Informe um horario correto")
     private Horario horarioFim;
     private String sintomas;
     private GravidadeConsulta gravidade;
+    @NotNull(message = "Informe o status da consulta")
     private StatusConsulta status;
     private PrescricaoMedica prescricaoMedica;
     private int id;

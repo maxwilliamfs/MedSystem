@@ -1,8 +1,10 @@
 package com.maxwilliam.MedSystem.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import jakarta.validation.constraints.NotBlank;
 
 public class Enfermeiro extends Funcionario {
+    @NotBlank(message = "Informe um COREN")
     private String corem;
 
     //Construtor
