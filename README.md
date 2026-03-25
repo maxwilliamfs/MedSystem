@@ -11,7 +11,7 @@ Esse é um projeto de simulação de sistema de unidade Médica desenvolvido em 
 - [ ] Sistema de login e senha
 - [ ] API RESTful interligando frontend e backend 
 - [ ] Banco de dados em SQL
-- [ ] Menus próprios para cada tipo de funcionário 
+- [ ] Menus próprios para cada tipo de funcionário com HTML E CSS 
 
 
 ## Tecnologias e Ferramentas
