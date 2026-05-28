@@ -2,7 +2,7 @@
 
 ## Descrição
 Esse é um projeto de simulação de sistema de unidade Médica desenvolvido em Java, focado no aprendizado de diferentes áreas da programação e simular um programa real, com backend em Java, API RESTful e frontend com HTML, CSS e JSON.
-* Projeto em Desenvolvimento   
+* Este projeto está temporariamente pausado para o foco em outros asuntos.
 
 ## Funcionalidades
 - [x] Gerenciamento de funcionários, pacientes e consultas (CRUD)
